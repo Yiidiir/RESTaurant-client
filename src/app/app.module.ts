@@ -7,11 +7,15 @@ import {appRoutes} from '../routes';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {IndexComponent} from './pages/index/index.component';
+import { HeaderComponent } from './pages/common/header/header.component';
+import { FooterComponent } from './pages/common/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
