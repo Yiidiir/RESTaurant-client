@@ -6,10 +6,12 @@ import {RouterModule} from '@angular/router';
 import {appRoutes} from '../routes';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {IndexComponent} from './pages/index/index.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
