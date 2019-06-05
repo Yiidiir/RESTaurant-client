@@ -15,7 +15,7 @@ import { FooterComponent } from './pages/common/footer/footer.component';
     AppComponent,
     IndexComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
