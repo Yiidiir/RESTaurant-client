@@ -22,10 +22,13 @@
         </li>
         <li class="nav-item dropdown">
           <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-secondary" id="dropdownMenu1" ngbDropdownToggle>Client Area</button>
+            <button class="btn btn-outline-secondary" id="dropdownMenu1" ngbDropdownToggle>{{getDropdownText()}}</button>
             <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <button class="dropdown-item" [routerLink]="['/user/login']">Sign In</button>
-              <button class="dropdown-item">Open an account</button>
+              <button *ngIf="!auth.isAuthenticated()" class="dropdown-item" [routerLink]="['/user/login']">Sign In</button>
+              <button *ngIf="!auth.isAuthenticated()" class="dropdown-item">Open an account</button>
+              <button *ngIf="auth.isAuthenticated()" class="dropdown-item">My Profile</button>
+              <button *ngIf="auth.isAuthenticated()" class="dropdown-item">My Orders</button>
+              <button *ngIf="auth.isAuthenticated()" class="dropdown-item" (click)="signOut()">Sign Out</button>
             </div>
           </div>
         </li>

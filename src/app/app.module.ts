@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {IndexComponent} from './pages/index/index.component';
 import { HeaderComponent } from './pages/common/header/header.component';
 import { FooterComponent } from './pages/common/footer/footer.component';
+import {AuthService} from './user/auth.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { FooterComponent } from './pages/common/footer/footer.component';
     NgbModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
