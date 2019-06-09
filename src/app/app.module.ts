@@ -7,9 +7,10 @@ import {appRoutes} from '../routes';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {IndexComponent} from './pages/index/index.component';
-import { HeaderComponent } from './pages/common/header/header.component';
-import { FooterComponent } from './pages/common/footer/footer.component';
+import {HeaderComponent} from './pages/common/header/header.component';
+import {FooterComponent} from './pages/common/footer/footer.component';
 import {AuthService} from './user/auth.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {AuthService} from './user/auth.service';
   imports: [
     BrowserModule,
     NgbModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
