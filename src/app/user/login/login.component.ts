@@ -10,14 +10,21 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   email;
   password;
+  loginInvalid;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login(formValues) {
-    this.authService.loginUser('user@email.com', formValues.password);
-    this.router.navigate(['']);
+    this.authService.loginUser(formValues.email, formValues.password).subscribe(resp => {
+      if (!resp) {
+        this.loginInvalid = true;
+        alert('OOPS!!');
+      } else {
+        this.router.navigate(['']);
+      }
+    });
   }
   cancel() {
     this.router.navigate(['']);
