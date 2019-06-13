@@ -7,6 +7,7 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back!</h3>
+              <ngb-alert *ngIf="loginInvalid" type="danger">Invalid E-mail or password</ngb-alert>
               <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login(loginForm.value)" novalidate>
               <div class="form-label-group">
                   <input  (ngModel)="email" type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
@@ -23,8 +24,6 @@
                   <label class="custom-control-label" for="customCheck1">Remember password</label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
-                <div class="text-center">
-                  <a class="small" href="#">Forgot password?</a></div>
               </form>
             </div>
           </div>

@@ -11,7 +11,7 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({
       Accept: 'application/json',
-      'Content-Type':  'application/json'
+      'Content-Type': 'application/json'
     })
   };
 
@@ -26,6 +26,7 @@ export class AuthService {
       return of(result as T);
     };
   }
+
   loginUser(email: string, password: string) {
     return this.http.post<IUser>(this.endpoint + 'users/login', {email, password}, this.httpOptions).pipe(tap(data => {
       this.currentUser = <IUser> data.data;
@@ -34,6 +35,16 @@ export class AuthService {
         return of(false);
       }
     ));
+  }
+
+  registerUser(dataBody) {
+    return this.http.post<IUser>(this.endpoint + 'users/register', dataBody, this.httpOptions).pipe(catchError(
+      err => {
+        return of(err);
+      }
+    )).pipe(tap(data => {
+      this.currentUser = <IUser> data.data;
+    }));
   }
 
   isAuthenticated() {

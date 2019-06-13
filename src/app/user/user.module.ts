@@ -4,6 +4,8 @@ import {userRoutes} from './user.routes';
 import {LoginComponent} from './login/login.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -11,10 +13,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     RouterModule.forChild(userRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class UserModule {

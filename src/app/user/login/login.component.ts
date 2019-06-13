@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import {Alert} from 'selenium-webdriver';
+import {NgbAlert} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   email;
   password;
-  loginInvalid;
+  loginInvalid = false;
+  alert: Alert;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -20,7 +23,6 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(formValues.email, formValues.password).subscribe(resp => {
       if (!resp) {
         this.loginInvalid = true;
-        alert('OOPS!!');
       } else {
         this.router.navigate(['']);
       }
@@ -28,5 +30,8 @@ export class LoginComponent implements OnInit {
   }
   cancel() {
     this.router.navigate(['']);
+  }
+  close(alert: Alert) {
+    this.alert.splice(this.alert, 1);
   }
 }

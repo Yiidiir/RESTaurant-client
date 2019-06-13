@@ -23,7 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     NgbModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
