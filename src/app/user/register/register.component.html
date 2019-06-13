@@ -9,7 +9,7 @@
               <h3 class="login-heading mb-4">Create an account!</h3>
               <ngb-alert *ngIf="regError" type="danger">{{ regErrorMsg.message }}
               </ngb-alert>
-              <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="register(loginForm.value)" novalidate>
+              <form #loginForm="ngForm" (ngSubmit)="register(loginForm.value)" novalidate>
                 <div class="form-label-group">
                   <input  (ngModel)="first_name" type="text" id="inputFirstName" name="first_name" class="form-control" placeholder="First Name" required autofocus>
                   <label for="inputFirstName">First Name</label>
