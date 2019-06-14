@@ -29,6 +29,7 @@ export class AuthService {
 
   loginUser(email: string, password: string) {
     return this.http.post<IUser>(this.endpoint + 'users/login', {email, password}, this.httpOptions).pipe(tap(data => {
+      data = data['data'];
       this.currentUser = <IUser> (data);
       localStorage.setItem('token', data.api_token);
     })).pipe(catchError(
@@ -44,6 +45,7 @@ export class AuthService {
         return of(err);
       }
     )).pipe(tap(data => {
+      data = data['data'];
       this.currentUser = <IUser> (data);
       localStorage.setItem('token', data.api_token);
     }));
@@ -60,6 +62,7 @@ export class AuthService {
 
   logOut() {
     this.currentUser = null;
+    localStorage.removeItem('token');
   }
 
   checkAuthenticationStatus() {
@@ -75,13 +78,16 @@ export class AuthService {
         })
       };
 
-      /*      this.http.get('http://localhost/api/users/check_token', httpOptionsWithBearer).pipe(tap(data => {
-              if (data.data instanceof Object && data.ok === true) {
-                this.currentUser = <IUser>data.data;
-              }
-              localStorage.removeItem('token');
-              this.currentUser = null;
-            })).subscribe();*/
+      this.http.get(this.endpoint + 'users/check_token', httpOptionsWithBearer).pipe(tap(data => {
+        // data = data['data'];
+        console.log(data);
+        if (true) {
+          return this.currentUser = <IUser>data;
+        }
+        /*        console.log('Invalid Token');
+                localStorage.removeItem('token');
+                this.currentUser = null;*/
+      })).subscribe();
 
     }
   }
