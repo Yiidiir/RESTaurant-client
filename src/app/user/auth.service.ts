@@ -55,9 +55,8 @@ export class AuthService {
     return !!this.currentUser;
   }
 
-  updateCurrentUser(email: string, lastname: string) {
-    this.currentUser.last_name = lastname;
-    this.currentUser.email = email;
+  getToken() {
+    return localStorage.getItem('token') || null;
   }
 
   logOut() {
