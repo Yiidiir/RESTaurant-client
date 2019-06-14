@@ -31,7 +31,4 @@ export class LoginComponent implements OnInit {
   cancel() {
     this.router.navigate(['']);
   }
-  close(alert: Alert) {
-    this.alert.splice(this.alert, 1);
-  }
 }

@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   email;
   password;
   regError = false;
-  regErrorMsg: Array;
+  regErrorMsg: any;
   alert: Alert;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -37,7 +37,4 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  close(alert: Alert) {
-    this.alert.splice(this.alert, 1);
-  }
 }
