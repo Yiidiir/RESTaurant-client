@@ -27,7 +27,7 @@
               <button *ngIf="!auth.isAuthenticated()" class="dropdown-item" [routerLink]="['/user/login']">Sign In</button>
               <button *ngIf="!auth.isAuthenticated()" class="dropdown-item" [routerLink]="['/user/register']">Open an account</button>
               <button *ngIf="auth.isAuthenticated()" class="dropdown-item">My Profile</button>
-              <button *ngIf="auth.isAuthenticated()" class="dropdown-item">My Orders</button>
+              <button *ngIf="auth.isAuthenticated()" class="dropdown-item" [routerLink]="['/user/my-orders']">My Orders</button>
               <button *ngIf="auth.isAuthenticated()" class="dropdown-item" (click)="signOut()">Sign Out</button>
             </div>
           </div>
