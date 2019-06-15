@@ -12,7 +12,7 @@ export class OrderService {
   constructor(private http: HttpClient, private auth: AuthService) {
   }
 
-  makeOrder() {
+  makeOrder(newOrder: IOrder) {
     const httpOptionsWithBearer = {
       headers: new HttpHeaders({
         Accept: 'application/json',
@@ -21,11 +21,7 @@ export class OrderService {
       })
     };
 
-    return this.http.post('/api/orders/', {
-      restaurant_id: 1,
-      order_time: 1562597491,
-      menu_id: 3
-    }, httpOptionsWithBearer).pipe(tap(data => {
+    return this.http.post('/api/orders/', newOrder, httpOptionsWithBearer).pipe(tap(data => {
     }));
   }
 }

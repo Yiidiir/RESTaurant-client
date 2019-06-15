@@ -18,7 +18,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order food from (Restaurant)</span>
-            <select class="form-control" (ngModel)="newOrder.restaurant_id">
+            <select class="form-control" (ngModel)="newOrder.restaurant_id" name="restaurant_id" required="required">
               <option *ngFor="let restaurant of allRestaurants" value="{{restaurant.id}}">{{restaurant.name}}</option>
             </select>
             <span class="select-arrow"></span>
@@ -28,7 +28,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Select meals</span>
-            <input class="form-control" type="text" placeholder="City or airport">
+            <input class="form-control" type="text" placeholder="What's your food">
           </div>
         </div>
       </div>
@@ -36,13 +36,14 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order Date</span>
-            <input class="form-control" type="date" required="">
+            <input (ngModel)="orderDate" name="order_date" class="form-control" type="date" required="required">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order Time</span>
-            <input class="form-control" type="time" required="">
+            <input (ngModel)="orderTime"
+                   name="order_time" class="form-control" type="time" required="required">
           </div>
         </div>
       </div>
@@ -80,7 +81,7 @@
         </div>
       </div>
       <div class="form-btn">
-        <button class="submit-btn">Order Now</button>
+        <input type="submit" class="submit-btn" value="Order Now">
       </div>
     </form>
   </div>
