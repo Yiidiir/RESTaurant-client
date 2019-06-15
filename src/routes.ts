@@ -3,6 +3,6 @@ import {IndexComponent} from './app/pages/index/index.component';
 
 export const appRoutes = [
   {path: '', component: IndexComponent, pathMatch: 'full'},
-  {path: 'user', loadChildren: './user/user.module#UserModule'}
-
+  {path: 'user', loadChildren: './user/user.module#UserModule'},
+  {path: 'owner', loadChildren: './app/owner/owner.module#OwnerModule'}
 ];

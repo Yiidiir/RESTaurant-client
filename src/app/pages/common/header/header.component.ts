@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   getDropdownText() {
     if (this.auth.isAuthenticated()) {
-      return this.auth.currentUser.email;
+      return this.auth.currentUser.first_name + ' ' + this.auth.currentUser.last_name;
     }
     return 'Client Area';
   }

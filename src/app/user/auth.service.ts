@@ -55,6 +55,19 @@ export class AuthService {
     return !!this.currentUser;
   }
 
+  isClient() {
+    return this.currentUser.role === 1;
+  }
+
+  isOwner() {
+    return this.currentUser.role === 2;
+  }
+
+  isAdmin() {
+    return this.currentUser.role === 3;
+
+  }
+
   getToken() {
     return localStorage.getItem('token') || null;
   }
