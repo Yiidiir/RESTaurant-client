@@ -16,10 +16,99 @@
   </div>
   <!-- /.row -->
 
+  <div class="col-md-10 mx-auto">
+    <h2>New Order</h2>
+    <div class="booking-form">
+      <form>
+        <div class="form-group">
+          <div class="form-checkbox">
+            <label for="roundtrip">
+              <input type="radio" id="roundtrip" name="flight-type" checked>
+              <span></span>Order and book table
+            </label>
+            <label for="one-way">
+              <input type="radio" id="one-way" name="flight-type">
+              <span></span>Order and get food delivered
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="form-label">Order food from (Restaurant)</span>
+              <select class="form-control">
+                <option *ngFor="let restaurant of allRestaurants" value="{{restaurant.id}}">{{restaurant.name}}</option>
+              </select>
+              <span class="select-arrow"></span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="form-label">Select meals</span>
+              <input class="form-control" type="text" placeholder="City or airport">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="form-label">Order Date</span>
+              <input class="form-control" type="date" required="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="form-label">Order Time</span>
+              <input class="form-control" type="time" required="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="form-label">Coupon</span>
+              <input class="form-control" type="text" required="">
+              <span class="select-arrow"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="form-label">People</span>
+              <select class="form-control">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+              </select>
+              <span class="select-arrow"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="form-label">Table class</span>
+              <select class="form-control">
+                <option>⭐</option>
+                <option>⭐⭐</option>
+                <option>⭐⭐⭐</option>
+                <option>⭐⭐⭐⭐</option>
+                <option>⭐⭐⭐⭐⭐</option>
+              </select>
+              <span class="select-arrow"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-btn">
+          <button class="submit-btn">Order Now</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Call to Action Well -->
   <div class="card text-white bg-secondary my-5 py-4 text-center">
     <div class="card-body">
-      <p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
+      <p class="text-white m-0">This call to action card is a great place to showcase some important information or
+        display a clever tagline!</p>
     </div>
   </div>
 
