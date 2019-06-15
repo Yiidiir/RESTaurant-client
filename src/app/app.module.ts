@@ -11,6 +11,8 @@ import {HeaderComponent} from './pages/common/header/header.component';
 import {FooterComponent} from './pages/common/footer/footer.component';
 import {AuthService} from './user/auth.service';
 import {HttpClientModule} from '@angular/common/http';
+import { NewOrderFormComponent } from './pages/common/new-order-form/new-order-form.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import {HttpClientModule} from '@angular/common/http';
     IndexComponent,
     HeaderComponent,
     FooterComponent,
+    NewOrderFormComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {RestaurantService} from '../../user/services/restaurant.service';
+import {Component, OnInit} from '@angular/core';
 import {IRestaurant} from '../../user/client/restaurant/restaurant.model';
+import {OrderService} from '../../user/services/order.service';
+import {Router} from '@angular/router';
+import {IOrder} from '../../user/client/my-orders/order.model';
 
 @Component({
   selector: 'app-index',
@@ -8,14 +10,13 @@ import {IRestaurant} from '../../user/client/restaurant/restaurant.model';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-  allRestaurants: IRestaurant[];
-  constructor(private restaurantS: RestaurantService) { }
+
+  constructor() {
+  }
 
   ngOnInit() {
-    this.restaurantS.getAllRestaurants().subscribe((data) => {
-      this.allRestaurants = data['data'];
-      console.log(this.allRestaurants);
-    });
+
   }
+
 
 }
