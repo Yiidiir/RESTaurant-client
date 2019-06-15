@@ -1,24 +1,36 @@
-
 <div class="container mt-4">
-  <div>
+  <div class="modal-title">
     <h2>Manage Restaurants</h2>
   </div>
+  <div class="row">
+
+    <div class="col">
+      <button type="button" class="btn btn-outline-primary btn-lg">Add Restaurant</button>
+    </div>
+  </div>
   <div class="row mb-5">
-    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4" *ngFor="let restaurant of allRestaurants">
       <div class="card card-inverse card-info">
         <img class="card-img-top" src="assets/images/restaurant-default.jpg">
         <div class="card-block">
-          <h4 class="card-title mt-3">Tawshif Ahsan Khan</h4>
+          <h4 class="card-title mt-3">{{restaurant.name}}</h4>
           <div class="meta card-text">
-            <a>Friends</a>
+            <a>{{restaurant.address}}</a>
           </div>
           <div class="card-text">
-            Tawshif is a web designer living in Bangladesh.
+            <span style="color:red">40 Pending Orders</span> <br>
+            600.000 DZD Total Revenue <br>
+            Capacity of 20 Tables, <br>90 people maxiumum.
           </div>
         </div>
         <div class="card-footer">
-          <small>Last updated 3 mins ago</small>
-          <button class="btn btn-info float-right btn-sm">Manage</button>
+          <small>Updated {{restaurant.updated_at}}</small>
+          <div class="row mt-2">
+            <div class="col col-12">
+              <button class="btn btn-info btn-block" [routerLink]="['/owner/manage-restaurants/'+restaurant.id]">Manage
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

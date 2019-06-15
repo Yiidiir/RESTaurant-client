@@ -3,4 +3,5 @@ export interface IRestaurant {
   'name': string;
   'address': string;
   'class': number;
+  'updated_at': string;
 }

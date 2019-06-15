@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ManageRestaurantsComponent } from './manage-restaurants/manage-restaurants.component';
+import { ManageRestaurantComponent } from './manage-restaurant/manage-restaurant.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ManageRestaurantsComponent } from './manage-restaurants/manage-restaura
     NgbModule
   ],
   declarations: [
-  ManageRestaurantsComponent]
+  ManageRestaurantsComponent,
+  ManageRestaurantComponent]
 })
 export class OwnerModule {
 }
