@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddTableComponent} from '../add-table/add-table.component';
+import {EditTableComponent} from '../edit-table/edit-table.component';
 
 @Component({
   selector: 'app-manage-tables',
@@ -16,6 +17,9 @@ export class ManageTablesComponent implements OnInit {
 
   openAddTable() {
     this.modalService.open(AddTableComponent);
+  }
+  openEditTable() {
+    this.modalService.open(EditTableComponent);
   }
 
 }
