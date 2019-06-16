@@ -1,0 +1,54 @@
+.room {
+  width: 1000px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, .25);
+  padding: 2em;
+}
+
+.row {
+  width: 100%;
+  text-align: center;
+}
+
+.column {
+  width: 49.5%;
+  display: inline-block;
+}
+
+.column a {
+  width: 25%;
+  display: inline-block;
+  text-align: center;
+  padding: 20px 0;
+  margin: 7px 0;
+  cursor: pointer;
+  border-radius: 50%;
+  background: url("/assets/images/table_capacity_4.png") no-repeat center;
+  background-size: contain;
+}
+
+.column a p {
+  display: block;
+  text-align: center;
+  transition: ease .35s;
+  opacity: 1;
+}
+
+.column a:hover p {
+  opacity: 0;
+}
+
+.column a span {
+  dispay: block;
+  text-align: center;
+  transition: ease .35s;
+  opacity: 0;
+}
+
+.column a:hover span {
+  opacity: 1;
+}
+span.s-Edit{
+  background-color: yellow;
+  border-radius: 3px;
+}

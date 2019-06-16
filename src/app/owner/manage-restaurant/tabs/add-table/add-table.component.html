@@ -1,0 +1,29 @@
+<div class="container col-md-12 my-2">
+  <h3>Add a table to </h3>
+<form>
+  <div class="form-group">
+    <label for="tableNumber">Table Number</label>
+    <input type="number" class="form-control" id="tableNumber" min="1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted"># of the table inside the restaurant</small>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6">
+    <label for="min_capacity">Minimum Capacity</label>
+    <input type="number" class="form-control" id="min_capacity" min="1">
+    </div>
+    <div class="col-md-6">
+    <label for="max_capacity">Maximum Capacity</label>
+    <input type="number" class="form-control" id="max_capacity" min="1">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <ngb-rating [(rate)]="class" id="class" class="class-stars" [max]="5"></ngb-rating>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Available</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>

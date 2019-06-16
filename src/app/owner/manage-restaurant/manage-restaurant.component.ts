@@ -14,7 +14,7 @@ export class ManageRestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantS.getRestaurant(+this.route.snapshot.params['id']).subscribe((data) => {
-      this.restaurant = <IRestaurant> data;
+      this.restaurant = <IRestaurant> data['data'];
       console.log(this.restaurant);
     });
   }
