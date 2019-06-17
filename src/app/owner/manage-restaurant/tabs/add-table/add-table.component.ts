@@ -15,7 +15,7 @@ export class AddTableComponent implements OnInit {
   class: any;
   @Input() restaurant: IRestaurant;
 
-  constructor(private tableS: TableService, private router: Router, private activeModal: NgbActiveModal) {
+  constructor(private tableS: TableService, private router: Router) {
   }
 
   ngOnInit() {

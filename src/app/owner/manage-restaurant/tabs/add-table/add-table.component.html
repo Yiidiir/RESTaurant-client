@@ -1,5 +1,5 @@
 <div class="container col-md-12 my-2">
-  <h3>Add a table to </h3>
+  <h4>Add a table to {{restaurant.name}}</h4>
   <form #addTableForm="ngForm" (ngSubmit)="addNewTable(addTableForm.value)">
     <div class="form-group">
       <label for="tableNumber">Table Number</label>
@@ -29,6 +29,6 @@
              name="available" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Available</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
   </form>
 </div>
