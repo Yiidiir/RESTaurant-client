@@ -13,15 +13,8 @@ export class OrderService {
   }
 
   makeOrder(newOrder: IOrder) {
-    const httpOptionsWithBearer = {
-      headers: new HttpHeaders({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.auth.getToken()
-      })
-    };
 
-    return this.http.post('/api/orders/', newOrder, httpOptionsWithBearer).pipe(tap(data => {
+    return this.http.post('/api/orders/', newOrder, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
     }));
   }
 }

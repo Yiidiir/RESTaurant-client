@@ -15,6 +15,13 @@ export class AuthService {
       'Content-Type': 'application/json'
     })
   };
+  httpOptionsWithBearer = {
+    headers: new HttpHeaders({
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.getToken()
+    })
+  };
 
   constructor(private http: HttpClient) {
 
@@ -102,5 +109,8 @@ export class AuthService {
       })).subscribe();
 
     }
+  }
+  getHttpHeadersWithToken() {
+    return this.httpOptionsWithBearer;
   }
 }
