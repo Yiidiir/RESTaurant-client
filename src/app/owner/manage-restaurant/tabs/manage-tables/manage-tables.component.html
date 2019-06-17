@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row mt-3">
   <div class="form-group">
-    <button type="button" class="btn btn-outline-primary btn-lg" (click)="openAddTable()">Add Table</button>
+    <button type="button" class="btn btn-outline-primary btn-lg" (tableCreated)="getTablesInRows()" (click)="openAddTable()">Add Table</button>
   </div>
   </div>
   <div class="room">
     <div class="row" id="row1">
       <div class="column c1" *ngIf="tablesRowOne!==undefined && tablesRowOne.length > 0">
-        <a *ngFor="let table of tablesRowOne"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (click)="openEditTable()">Edit</span></a>
+        <a *ngFor="let table of tablesRowOne"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (tableEdited)="askReload()" (click)="openEditTable()">Edit</span></a>
       </div>
       <div class="column c2" *ngIf="tablesRowTwo!==undefined && tablesRowTwo.length > 0">
-        <a *ngFor="let table of tablesRowTwo"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (click)="openEditTable()">Edit</span></a>
+        <a *ngFor="let table of tablesRowTwo"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (tableEdited)="askReload()" (click)="openEditTable()">Edit</span></a>
       </div>
     </div>
   </div>

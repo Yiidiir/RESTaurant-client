@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ITable} from '../../table.model';
 import {TableService} from '../../../services/table.service';
 import {Router} from '@angular/router';
@@ -14,8 +14,10 @@ export class AddTableComponent implements OnInit {
   newTable: ITable;
   class: any;
   @Input() restaurant: IRestaurant;
+  @Output() tableCreated = new EventEmitter();
 
-  constructor(private tableS: TableService, private router: Router) {
+
+  constructor(private tableS: TableService, private router: Router, private modalService: NgbActiveModal) {
   }
 
   ngOnInit() {
@@ -29,7 +31,8 @@ export class AddTableComponent implements OnInit {
     console.log(this.newTable);
     this.tableS.addTable(this.newTable).subscribe((data) => {
       alert('Table add success');
-      this.router.navigate(['owner/manage-restaurants/3']);
+      this.tableCreated.emit('reload');
+      this.modalService.close();
     });
   }
 

@@ -8,9 +8,9 @@
       </ng-template>
     </ngb-tab>
     <ngb-tab id="tab-selectbyid2">
-      <ng-template ngbTabTitle>Manage Tables</ng-template>
+      <ng-template ngbTabTitle>Manage Tables <span class="badge badge-secondary">{{restaurant.tables.length}}</span> </ng-template>
       <ng-template ngbTabContent>
-        <app-manage-tables [restaurant]="restaurant"></app-manage-tables>
+        <app-manage-tables (askReload)="getFreshRestaurantData()" [restaurant]="restaurant"></app-manage-tables>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="tab-selectbyid3">

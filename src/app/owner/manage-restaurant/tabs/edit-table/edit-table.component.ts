@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ITable} from '../../table.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-table',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-table.component.css']
 })
 export class EditTableComponent implements OnInit {
+  @Input() tableToEdit: ITable;
+  @Output() tableEdited = new EventEmitter();
 
-  constructor() { }
+  constructor(private modalService: NgbModal) {
+  }
 
   ngOnInit() {
+  }
+
+  close() {
+    this.modalService.dismissAll();
+    this.tableEdited.emit();
+
   }
 
 }
