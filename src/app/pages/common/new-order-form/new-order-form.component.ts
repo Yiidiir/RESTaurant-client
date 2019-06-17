@@ -23,7 +23,7 @@ export class NewOrderFormComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantS.getAllRestaurants().subscribe((data) => {
-      this.allRestaurants = data.data;
+      this.allRestaurants = data['data'];
       console.log(this.allRestaurants);
     });
   }
