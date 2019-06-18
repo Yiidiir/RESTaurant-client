@@ -5,8 +5,8 @@
       <label for="tableNumber">Table Number</label>
       <input (ngModel)="in_restaurant_number"
              name="in_restaurant_number" type="number" class="form-control" id="tableNumber" min="1"
-             aria-describedby="emailHelp">
-      <small id="emailHelp" class="form-text text-muted"># of the table inside the restaurant</small>
+             aria-describedby="tableNumberExplain">
+      <small id="tableNumberExplain" class="form-text text-muted"># of the table inside the restaurant</small>
     </div>
     <div class="form-row">
       <div class="col-md-6">
@@ -26,8 +26,8 @@
     </div>
     <div class="form-group form-check">
       <input type="checkbox" (ngModel)="available"
-             name="available" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Available</label>
+             name="available" class="form-check-input" id="availableCheck">
+      <label class="form-check-label" for="availableCheck">Available</label>
     </div>
     <button type="submit" class="btn btn-outline-primary">Submit</button>
   </form>

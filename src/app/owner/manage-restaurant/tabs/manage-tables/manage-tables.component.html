@@ -7,10 +7,10 @@
   <div class="room">
     <div class="row" id="row1">
       <div class="column c1" *ngIf="tablesRowOne!==undefined && tablesRowOne.length > 0">
-        <a *ngFor="let table of tablesRowOne"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (tableEdited)="askReload()" (click)="openEditTable()">Edit</span></a>
+        <a *ngFor="let table of tablesRowOne"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (tableEdited)="askReloadAction()" (click)="openEditTable(table)">Edit</span></a>
       </div>
       <div class="column c2" *ngIf="tablesRowTwo!==undefined && tablesRowTwo.length > 0">
-        <a *ngFor="let table of tablesRowTwo"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (tableEdited)="askReload()" (click)="openEditTable()">Edit</span></a>
+        <a *ngFor="let table of tablesRowTwo"><p>{{table.in_restaurant_number}}</p><span class="s-Edit" (tableEdited)="askReloadAction()" (click)="openEditTable(table)">Edit</span></a>
       </div>
     </div>
   </div>

@@ -37,9 +37,9 @@ export class ManageTablesComponent implements OnChanges {
     });
   }
 
-  openEditTable() {
+  openEditTable(tableToEdit: ITable) {
     const editTableModel = this.modalService.open(EditTableComponent);
-    editTableModel.componentInstance.restaurant = this.restaurant;
+    editTableModel.componentInstance.tableToEdit = tableToEdit;
 
   }
 
