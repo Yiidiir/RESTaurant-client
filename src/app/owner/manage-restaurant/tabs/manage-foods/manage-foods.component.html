@@ -1,0 +1,30 @@
+<div class="row mb-5">
+  <div class="col-sm-6 col-md-4 col-lg-3 mt-4" *ngFor="let food of restaurant.foods">
+    <div class="card card-inverse card-info">
+      <img class="card-img-top" src="assets/images/food-default.jpg">
+      <div class="card-block px-3 pb-3">
+        <h4 class="card-title mt-3">{{food.name}}</h4>
+        <div class="meta card-text">
+          <h5>{{food.price}}.00 <em>DZD</em></h5>
+        </div>
+        <div class="card-text">
+          {{food.description}}
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row mt-2">
+          <div class="col col-12">
+            <button class="btn btn-info btn-block">Edit Food
+            </button>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col col-12">
+            <button class="btn btn-danger btn-block">Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
