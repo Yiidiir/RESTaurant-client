@@ -1,0 +1,22 @@
+<div class="container col-md-12 my-2">
+  <h4>Add a table to {{restaurant.name}}</h4>
+  <form #addFoodForm="ngForm" (ngSubmit)="addNewFood(addFoodForm.value)">
+    <div class="form-group">
+      <label for="name">Food name</label>
+      <input (ngModel)="name"
+             name="name" type="text" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" rows="3" id="description" (ngModel)="description" name="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input (ngModel)="price"
+             name="price" type="number" class="form-control" id="price" min="10"
+             aria-describedby="priceExplain">
+      <small id="priceExplain" class="form-text text-muted">Price in DZD</small>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+  </form>
+</div>

@@ -16,7 +16,7 @@
     <ngb-tab id="tab-selectbyid3">
       <ng-template ngbTabTitle>Manage Food <span class="badge badge-secondary">{{restaurant.foods.length}}</span></ng-template>
       <ng-template ngbTabContent>
-        <app-manage-foods [restaurant]="restaurant"></app-manage-foods>
+        <app-manage-foods (askReload)="getFreshRestaurantData()" [restaurant]="restaurant"></app-manage-foods>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="tab-selectbyid4">
