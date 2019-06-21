@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IRestaurant} from '../../../../user/client/restaurant/restaurant.model';
-import {AddTableComponent} from '../add-table/add-table.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddFoodComponent} from '../add-food/add-food.component';
 import {FoodService} from '../../../services/food.service';
 import {IFood} from '../../food.model';
+import {EditFoodComponent} from '../edit-food/edit-food.component';
 
 @Component({
   selector: 'app-manage-foods',
@@ -41,5 +41,13 @@ export class ManageFoodsComponent implements OnInit {
     });
   }
 
+  openEditFood(foodToEdit: IFood) {
+    const editFoodModel = this.modalService.open(EditFoodComponent);
+    editFoodModel.componentInstance.restaurant = this.restaurant;
+    editFoodModel.componentInstance.foodToEdit = foodToEdit;
+    editFoodModel.componentInstance.foodEdited.subscribe(($e) => {
+      this.askReloadAction();
+    });
+  }
 
 }

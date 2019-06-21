@@ -12,6 +12,7 @@ import { EditTableComponent } from './manage-restaurant/tabs/edit-table/edit-tab
 import { ManageOrdersComponent } from './manage-restaurant/tabs/manage-orders/manage-orders.component';
 import { ManageFoodsComponent } from './manage-restaurant/tabs/manage-foods/manage-foods.component';
 import { AddFoodComponent } from './manage-restaurant/tabs/add-food/add-food.component';
+import {EditFoodComponent} from './manage-restaurant/tabs/edit-food/edit-food.component';
 
 
 @NgModule({
@@ -30,8 +31,9 @@ import { AddFoodComponent } from './manage-restaurant/tabs/add-food/add-food.com
   EditTableComponent,
   ManageOrdersComponent,
   ManageFoodsComponent,
-  AddFoodComponent],
-  entryComponents: [AddTableComponent, EditTableComponent, AddFoodComponent]
+  AddFoodComponent,
+  EditFoodComponent],
+  entryComponents: [AddTableComponent, EditTableComponent, AddFoodComponent, EditFoodComponent]
 })
 export class OwnerModule {
 }

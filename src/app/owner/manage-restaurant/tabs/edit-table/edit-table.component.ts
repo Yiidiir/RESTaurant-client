@@ -28,6 +28,7 @@ export class EditTableComponent implements OnInit {
   }
 
   editTable(formValues) {
+    this.tableToEdit.class = this.class;
     this.tableService.editTable(this.tableToEdit).subscribe((data) => {
       alert('Edit table success!');
       this.close();

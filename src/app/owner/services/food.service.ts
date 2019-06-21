@@ -27,11 +27,11 @@ export class FoodService {
     }
   }
 
-  editTable(editedFood: IFood) {
+  editFood(editedFood: IFood) {
     console.log(editedFood);
     const headers = this.auth.getHttpHeadersWithToken();
     headers.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-    return this.http.patch('/api/tables/' + editedFood.id, editedFood, headers).pipe(tap(data => {
+    return this.http.patch('/api/foods/' + editedFood.id, editedFood, headers).pipe(tap(data => {
     }));
   }
 }
