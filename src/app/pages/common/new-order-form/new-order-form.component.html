@@ -1,7 +1,7 @@
 <div class="col-md-10 mx-auto">
   <h2>New Order</h2>
   <div class="booking-form">
-    <form  #newOrderForm="ngForm" (ngSubmit)="makeNewOrder(newOrderForm.value)">
+    <form #newOrderForm="ngForm" (ngSubmit)="makeNewOrder(newOrderForm.value)">
       <div class="form-group">
         <div class="form-checkbox">
           <label for="roundtrip">
@@ -18,7 +18,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order food from (Restaurant)</span>
-            <select class="form-control" (ngModel)="newOrder.restaurant_id" name="restaurant_id" required="required">
+            <select class="form-control" [(ngModel)]="restaurantId" name="restaurant_id" required="required">
               <option *ngFor="let restaurant of allRestaurants" value="{{restaurant.id}}">{{restaurant.name}}</option>
             </select>
             <span class="select-arrow"></span>
@@ -27,8 +27,11 @@
 
         <div class="col-md-6">
           <div class="form-group">
-            <span class="form-label">Select meals</span>
-            <input class="form-control" type="text" placeholder="What's your food">
+            <span class="form-label">Select Food</span>
+            <select class="form-control" name="food_id" required="required">
+              <option *ngFor="let food of availableFoods" value="{{food.id}}" (select)="alert(food.id)">{{food.name}}</option>
+            </select>
+            <span class="select-arrow"></span>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {RestaurantService} from '../../../user/services/restaurant.service';
 import {IRestaurant} from '../../../user/client/restaurant/restaurant.model';
 import {AuthService} from '../../../user/auth.service';
+import {IFood} from '../../../owner/manage-restaurant/food.model';
 
 @Component({
   selector: 'app-new-order-form',
@@ -13,9 +14,12 @@ import {AuthService} from '../../../user/auth.service';
 })
 export class NewOrderFormComponent implements OnInit {
   newOrder: IOrder;
-  allRestaurants: IRestaurant[];
+  allRestaurants: IRestaurant[] = [];
   orderDate: number;
   orderTime: number;
+  restaurantId: number;
+  loadedO = false;
+  selectedFood: IFood;
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,
               private auth: AuthService) {
@@ -23,8 +27,9 @@ export class NewOrderFormComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantS.getAllRestaurants().subscribe((data) => {
-      this.allRestaurants = data['data'];
-      console.log(this.allRestaurants);
+      this.allRestaurants = <IRestaurant[]>data['data'];
+      this.restaurantId = this.allRestaurants[0].id;
+      this.loadedO = true;
     });
   }
 
@@ -41,6 +46,22 @@ export class NewOrderFormComponent implements OnInit {
     } else {
       alert('Please Login or Create an account!');
     }
+  }
+
+  get availableFoods() {
+    if (this.loaded) {
+      return this.allRestaurants.find((resto) => {
+        return +this.restaurantId === +resto.id;
+      }).foods;
+    }
+  }
+
+  get loaded() {
+    return this.loadedO;
+  }
+
+  addToCart(event) {
+    console.log(event); // logs model value
   }
 
 }
