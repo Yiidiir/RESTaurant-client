@@ -14,11 +14,36 @@
           </label>
         </div>
       </div>
+      <div class="card shopping-cart mb-3" [className]="liveCart.foods.length>0 ? 'card shopping-cart' : ''">
+        <div class="card-body">
+          <div class="row m-1" *ngFor="let product of getFoodInCart">
+            <div class="col-12 col-sm-12 col-md-2 text-center">
+              <img class="img-responsive" src="assets/images/food-default.jpg" alt="Food Default image" width="120" height="80">
+            </div>
+            <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+              <h4 class="product-name"><strong>{{product.name}}</strong></h4>
+              <h4>
+                <small>{{product.description}}</small>
+              </h4>
+            </div>
+            <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+              <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+                <h6><strong>{{product.price}}.00 <span class="text-muted">DZD</span></strong></h6>
+              </div>
+              <div class="col-2 col-sm-2 col-md-2 text-right">
+                <button type="button" class="btn btn-outline-danger btn-xs" (click)="removeItem(product.id)">
+                  Remove Item
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order food from (Restaurant)</span>
-            <select class="form-control" [(ngModel)]="restaurantId" name="restaurant_id" required="required">
+            <select (change)="resetCart()" class="form-control" [(ngModel)]="restaurantId" name="restaurant_id" required="required">
               <option *ngFor="let restaurant of allRestaurants" value="{{restaurant.id}}">{{restaurant.name}}</option>
             </select>
             <span class="select-arrow"></span>
@@ -28,8 +53,10 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Select Food</span>
-            <select class="form-control" name="food_id" required="required">
-              <option *ngFor="let food of availableFoods" value="{{food.id}}" (select)="alert(food.id)">{{food.name}}</option>
+            <select (change)="addToCart()" [(ngModel)]="selectedFood" class="form-control" name="food_id"
+                    required="required">
+              <option *ngFor="let food of availableFoods" value="{{food.id}}" (select)="alert(food.id)">{{food.name}}
+              </option>
             </select>
             <span class="select-arrow"></span>
           </div>

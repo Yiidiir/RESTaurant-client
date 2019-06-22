@@ -6,6 +6,7 @@ import {RestaurantService} from '../../../user/services/restaurant.service';
 import {IRestaurant} from '../../../user/client/restaurant/restaurant.model';
 import {AuthService} from '../../../user/auth.service';
 import {IFood} from '../../../owner/manage-restaurant/food.model';
+import {ICart} from '../../../user/client/my-orders/cart.model';
 
 @Component({
   selector: 'app-new-order-form',
@@ -20,6 +21,7 @@ export class NewOrderFormComponent implements OnInit {
   restaurantId: number;
   loadedO = false;
   selectedFood: IFood;
+  liveCart: ICart = <ICart>{foods: []};
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,
               private auth: AuthService) {
@@ -60,8 +62,26 @@ export class NewOrderFormComponent implements OnInit {
     return this.loadedO;
   }
 
-  addToCart(event) {
-    console.log(event); // logs model value
+  addToCart() {
+    this.liveCart.foods.push(this.availableFoods.find((food) => {
+      return +food.id === +this.selectedFood;
+    }));
+    this.selectedFood = null;
+    console.log(this.liveCart);
+  }
+
+  get getFoodInCart() {
+    return this.liveCart.foods;
+  }
+
+  resetCart() {
+    this.liveCart.foods = [];
+  }
+
+  removeItem(id) {
+    this.liveCart.foods = this.liveCart.foods.filter((food) => {
+      return +food.id !== +id;
+    });
   }
 
 }
