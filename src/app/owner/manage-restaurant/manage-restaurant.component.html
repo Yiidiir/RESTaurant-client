@@ -28,7 +28,7 @@
     <ngb-tab id="tab-selectbyid5">
       <ng-template ngbTabTitle>Edit Restaurant Info</ng-template>
       <ng-template ngbTabContent>
-        Coming soon.
+        <app-edit-restaurant-info (askReload)="getFreshRestaurantData()" [restaurant]="restaurant"></app-edit-restaurant-info>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
