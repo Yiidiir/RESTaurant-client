@@ -1,3 +1,5 @@
+import {IFood} from '../../../owner/manage-restaurant/food.model';
+
 export interface IOrder {
   'id'?: number;
   'restaurant_id': number;
@@ -7,4 +9,5 @@ export interface IOrder {
   'order_time': string;
   'order_status'?: string;
   'menu_id': number;
+  'foods'?: any;
 }
