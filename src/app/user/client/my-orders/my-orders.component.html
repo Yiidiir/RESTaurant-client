@@ -17,7 +17,7 @@
         <li *ngFor="let order of myOrders" class="timeline-item bg-white rounded ml-3 p-4 shadow">
           <div class="timeline-arrow"></div>
           <h2 class="h5 mb-0">Order #{{order.id}} from {{order.restaurant_name}}</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i> Ordered for: {{order.order_time}}</span>
-          <h3><span class="badge badge-{{getBadgeColor(order.order_status)}}">{{order.order_status}}</span><span class="badge badge-light">Table Booking</span></h3>
+          <h3><span class="badge badge-{{getBadgeColor(order.order_status)}}">{{order.order_status}}</span><span class="badge badge-light">{{order.order_type}}</span></h3>
           <p class="text-md-left font-weight-bold mb-0">Contains: </p>
           <ul class="mb-1">
             <li *ngFor="let food of order.foods">{{food.name}} ({{food.price}}.00 DZD)</li>
