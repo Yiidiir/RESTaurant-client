@@ -30,7 +30,13 @@
     <!--<img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + order.flag" class="mr-2" style="width: 20px">-->
     <!--<ngb-highlight [result]="order.name" [term]="filter.value"></ngb-highlight>-->
     <!--</td>-->
-    <td>33cl soda, frites</td>
+    <td>
+      <ul>
+        <li *ngFor="let food of order.foods">
+          {{food.name}}
+        </li>
+      </ul>
+    </td>
     <td>
       <ngb-highlight [result]="order.order_time" [term]="filter.value"></ngb-highlight>
     </td>
