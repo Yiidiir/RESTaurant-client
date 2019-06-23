@@ -23,6 +23,9 @@
             <li *ngFor="let food of order.foods">{{food.name}} ({{food.price}}.00 DZD)</li>
           </ul>
           <div class="form-group">
+            <h2>Total price<span class="badge badge-secondary ml-1">{{order.price}}.00 DZD</span></h2>
+          </div>
+          <div class="form-group">
           <button type="button" class="btn btn-outline-dark">Cancel Order</button>
           </div>
         </li>
