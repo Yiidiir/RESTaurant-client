@@ -22,7 +22,8 @@
   </thead>
   <tbody>
   <tr *ngFor="let order of orders$ | async; index as i">
-    <th scope="row">{{ i + 1 }}</th>
+    <th scope="row">
+      <ngb-highlight [result]="order.id" [term]="filter.value"></ngb-highlight></th>
     <td>
       <ngb-highlight [result]="order.client_fullname" [term]="filter.value"></ngb-highlight>
     </td>
@@ -43,7 +44,8 @@
     <td>
       <ngb-highlight [result]="order.order_status" [term]="filter.value"></ngb-highlight>
     </td>
-    <td>800.00DZD</td>
+    <td>
+      <ngb-highlight [result]="order.price" [term]="filter.value"></ngb-highlight>.00 DZD
     <td>Confirm Order</td>
   </tr>
   </tbody>

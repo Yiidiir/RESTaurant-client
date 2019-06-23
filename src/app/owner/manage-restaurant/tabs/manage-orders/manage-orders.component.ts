@@ -33,11 +33,13 @@ export class ManageOrdersComponent implements OnInit {
   }
 
   search(text: string, pipe: PipeTransform): IOrder[] {
-    return this.orders.filter(country => {
+    return this.orders.filter(order => {
       const term = text.toLowerCase();
-      return country.client_fullname.toLowerCase().includes(term)
-        || pipe.transform(country.order_time).includes(term)
-        || pipe.transform(country.order_status).includes(term);
+      return order.client_fullname.toLowerCase().includes(term)
+        || pipe.transform(order.order_time).includes(term)
+        || pipe.transform(order.order_status).includes(term)
+        || order.price.toFixed().includes(term)
+        || order.id.toFixed().includes(term);
     });
   }
 

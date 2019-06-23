@@ -10,4 +10,5 @@ export interface IOrder {
   'order_status'?: string;
   'menu_id': number;
   'foods'?: any;
+  'price'?: number;
 }
