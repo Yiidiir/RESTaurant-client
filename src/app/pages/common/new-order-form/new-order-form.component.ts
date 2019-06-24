@@ -23,6 +23,7 @@ export class NewOrderFormComponent implements OnInit {
   selectedFood: IFood;
   liveCart: ICart = <ICart> {foods: []};
   orderType = '0';
+  deliveryAddress: string;
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,
               private auth: AuthService) {
@@ -42,6 +43,7 @@ export class NewOrderFormComponent implements OnInit {
       this.newOrder.order_time = Math.floor(new Date(formValues.order_date + ' ' + formValues.order_time).getTime() / 1000).toString();
       this.newOrder.menu_id = 0;
       this.newOrder.foods = JSON.stringify(this.liveCart.foods.map((food) => food.id));
+      this.newOrder.order_type = this.orderType;
       console.log(this.newOrder);
       this.orderS.makeOrder(this.newOrder).subscribe((data) => {
         alert('Thank you for your order');
