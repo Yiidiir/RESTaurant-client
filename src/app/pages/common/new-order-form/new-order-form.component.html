@@ -5,11 +5,11 @@
       <div class="form-group">
         <div class="form-checkbox">
           <label for="roundtrip">
-            <input type="radio" id="roundtrip" name="flight-type" checked>
+            <input type="radio" value="0" id="roundtrip" name="flight-type" [(ngModel)]="orderType">
             <span></span>Order and book table
           </label>
           <label for="one-way">
-            <input type="radio" id="one-way" name="flight-type" disabled="disabled">
+            <input type="radio" value="1" id="one-way" name="flight-type" [(ngModel)]="orderType">
             <span></span>Order and get food delivered
           </label>
         </div>
@@ -85,7 +85,7 @@
             <span class="select-arrow"></span>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" *ngIf="orderType == '0'">
           <div class="form-group">
             <span class="form-label">People</span>
             <select class="form-control">
@@ -103,7 +103,7 @@
             <span class="select-arrow"></span>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" *ngIf="orderType == '0'">
           <div class="form-group">
             <span class="form-label">Table class</span>
             <select class="form-control">
@@ -116,6 +116,14 @@
             <span class="select-arrow"></span>
           </div>
         </div>
+        <div class="col-md-8" *ngIf="orderType == '1'">
+          <div class="form-group">
+            <span class="form-label">Address</span>
+            <input class="form-control" type="text" required="">
+            <span class="select-arrow"></span>
+          </div>
+        </div>
+
       </div>
       <div class="form-btn">
         <input type="submit" class="submit-btn" value="Order Now">

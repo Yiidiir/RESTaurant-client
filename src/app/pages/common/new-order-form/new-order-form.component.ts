@@ -21,7 +21,8 @@ export class NewOrderFormComponent implements OnInit {
   restaurantId: number;
   loadedO = false;
   selectedFood: IFood;
-  liveCart: ICart = <ICart>{foods: []};
+  liveCart: ICart = <ICart> {foods: []};
+  orderType = '0';
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,
               private auth: AuthService) {
