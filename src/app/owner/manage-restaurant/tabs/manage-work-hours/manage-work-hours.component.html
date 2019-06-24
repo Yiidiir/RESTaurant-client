@@ -1,3 +1,31 @@
-<p>
-  manage-work-hours works!
-</p>
+<div class="container m-3">
+  <div class="row">
+    <div class="col">
+    <ngb-tabset type="pills">
+      <ngb-tab>
+        <ng-template ngbTabTitle>Business Days Hours</ng-template>
+        <ng-template ngbTabContent>
+          <div class="row">
+            <work-time
+              class="mt-2 workhoursbox"
+              [(ngModel)]="workTimeFrontend"
+              [workTimeType]="workTimeType"
+              [readonly]="readOnly"></work-time>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle>Exceptions</ng-template>
+        <ng-template ngbTabContent>
+          <ul>
+          <li *ngFor="let day of getExceptionsWorkDays()">{{day}} ({{checkDateStringType(day)}})
+            <ul class="square">
+              <li *ngFor="let hour of getExceptionsWorkHours(day)">{{hour}}</li>
+            </ul></li>
+          </ul>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+    </div>
+  </div>
+</div>

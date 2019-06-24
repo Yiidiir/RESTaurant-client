@@ -15,6 +15,7 @@ import { AddFoodComponent } from './manage-restaurant/tabs/add-food/add-food.com
 import {EditFoodComponent} from './manage-restaurant/tabs/edit-food/edit-food.component';
 import { EditRestaurantInfoComponent } from './manage-restaurant/tabs/edit-restaurant-info/edit-restaurant-info.component';
 import { ManageWorkHoursComponent } from './manage-restaurant/tabs/manage-work-hours/manage-work-hours.component';
+import { WorkTimeModule } from 'work-time';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ManageWorkHoursComponent } from './manage-restaurant/tabs/manage-work-h
     RouterModule.forChild(ownerRoutes),
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    WorkTimeModule
   ],
   declarations: [
   ManageRestaurantsComponent,
