@@ -88,7 +88,7 @@
         <div class="col-md-4" *ngIf="orderType == '0'">
           <div class="form-group">
             <span class="form-label">People</span>
-            <select class="form-control" name="people_count">
+            <select class="form-control" name="people_count" [ngModel]="peopleCount">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -106,7 +106,7 @@
         <div class="col-md-4" *ngIf="orderType == '0'">
           <div class="form-group">
             <span class="form-label">Table class</span>
-            <select class="form-control" name="table_class">
+            <select class="form-control" name="table_class" [ngModel]="tableClass">
               <option value="1">⭐</option>
               <option value="2">⭐⭐</option>
               <option value="3" selected>⭐⭐⭐ (Normal)</option>
