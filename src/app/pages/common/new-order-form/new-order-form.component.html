@@ -72,8 +72,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order Time</span>
-            <input (ngModel)="orderTime"
-                   name="order_time" class="form-control" type="time" required="required">
+            <ngb-timepicker [(ngModel)]="orderTime" [ngModelOptions]="{standalone: true}" class="form-control pt-4 pb-1"></ngb-timepicker>
           </div>
         </div>
       </div>

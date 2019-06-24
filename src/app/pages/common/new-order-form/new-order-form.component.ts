@@ -7,6 +7,7 @@ import {IRestaurant} from '../../../user/client/restaurant/restaurant.model';
 import {AuthService} from '../../../user/auth.service';
 import {IFood} from '../../../owner/manage-restaurant/food.model';
 import {ICart} from '../../../user/client/my-orders/cart.model';
+import {NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-new-order-form',
@@ -17,7 +18,7 @@ export class NewOrderFormComponent implements OnInit {
   newOrder: IOrder;
   allRestaurants: IRestaurant[] = [];
   orderDate: number;
-  orderTime: number;
+  orderTime = {hour: 13, minute: 30};
   restaurantId: number;
   loadedO = false;
   selectedFood: IFood;
@@ -28,7 +29,8 @@ export class NewOrderFormComponent implements OnInit {
   tableClass: number;
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,
-              private auth: AuthService) {
+              private auth: AuthService, config: NgbTimepickerConfig) {
+    config.spinners = false;
   }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class NewOrderFormComponent implements OnInit {
   makeNewOrder(formValues) {
     if (this.auth.isAuthenticated()) {
       this.newOrder = <IOrder>formValues;
+      this.newOrder.order_time = this.orderTime.hour+':'+this.orderTime.minute;
       this.newOrder.order_time = Math.floor(new Date(formValues.order_date + ' ' + formValues.order_time).getTime() / 1000).toString();
       this.newOrder.menu_id = 0;
       this.newOrder.foods = JSON.stringify(this.liveCart.foods.map((food) => food.id));
