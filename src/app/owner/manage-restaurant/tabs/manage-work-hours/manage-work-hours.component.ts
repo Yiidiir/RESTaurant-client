@@ -45,8 +45,7 @@ export class ManageWorkHoursComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.workTimeBackend = JSON.parse(this.restaurant.work_schedule);
-    console.log(this.workTimeBackend);
+    this.workTimeBackend = JSON.parse(JSON.parse(this.restaurant.work_schedule));
     this.getWorkDaysHours();
   }
 
