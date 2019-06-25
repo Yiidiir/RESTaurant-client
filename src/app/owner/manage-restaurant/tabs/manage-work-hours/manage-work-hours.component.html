@@ -1,31 +1,57 @@
 <div class="container m-3">
   <div class="row">
     <div class="col">
-    <ngb-tabset type="pills">
-      <ngb-tab>
-        <ng-template ngbTabTitle>Business Days Hours</ng-template>
-        <ng-template ngbTabContent>
-          <div class="row">
-            <work-time
-              class="mt-2 workhoursbox"
-              [(ngModel)]="workTimeFrontend"
-              [workTimeType]="workTimeType"
-              [readonly]="readOnly"></work-time>
-          </div>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab>
-        <ng-template ngbTabTitle>Exceptions</ng-template>
-        <ng-template ngbTabContent>
-          <ul>
-          <li *ngFor="let day of getExceptionsWorkDays()">{{day}} ({{checkDateStringType(day)}})
-            <ul class="square">
-              <li *ngFor="let hour of getExceptionsWorkHours(day)">{{hour}}</li>
-            </ul></li>
-          </ul>
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
+      <ngb-tabset type="pills">
+        <ngb-tab>
+          <ng-template ngbTabTitle>Business Days Hours</ng-template>
+          <ng-template ngbTabContent>
+            <div class="row mt-2">
+              <work-time
+                class="mt-2 workhoursbox"
+                [(ngModel)]="workTimeFrontend"
+                [workTimeType]="workTimeType"
+                [readonly]="readOnly"></work-time>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Exceptions</ng-template>
+          <ng-template ngbTabContent>
+            <div class="form-group mt-2">
+              <div class="form-row">
+                <div class="col-md-3">
+                  <label for="exceptionDate">Exception Date</label>
+                  <input [(ngModel)]="exceptionDate"
+                         name="exceptionDate" type="text" class="form-control" id="exceptionDate" min="10"
+                         aria-describedby="dateFormatExplain">
+                  <small id="dateFormatExplain" class="form-text text-muted">Accepted format 2019-12-06, if it's a recurring
+                    exception use the 12-06 format.
+                  </small>
+                </div>
+                <div class="col-md-8">
+                  <label for="exceptionHours">Exception Hours</label>
+                  <input [(ngModel)]="exceptionHours"
+                         name="exceptionHours" type="text" class="form-control" id="exceptionHours" min="10"
+                         aria-describedby="hoursExplain">
+                  <small id="hoursExplain" class="form-text text-muted">Accepted format 08:00-12:00. Multiple values separated by commas. Ignore if the exception takes place all day.
+                  </small>
+                </div>
+                <div class="col-md-1">
+                  <label for="addBtn">Add</label>
+                  <button id="addBtn" class="btn btn-primary form-control" (click)="addException()">+</button>
+                </div>
+              </div>
+            </div>
+            <ul>
+              <li *ngFor="let day of getExceptionsWorkDays()">{{day}} ({{checkDateStringType(day)}})
+                <ul class="square">
+                  <li *ngFor="let hour of getExceptionsWorkHours(day)">{{hour}}</li>
+                </ul>
+              </li>
+            </ul>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
     </div>
   </div>
 </div>

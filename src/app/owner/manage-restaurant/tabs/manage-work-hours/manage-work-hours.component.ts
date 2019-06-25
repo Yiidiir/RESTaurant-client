@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {WorkTimeType} from 'work-time';
+import {IRestaurant} from '../../../../user/client/restaurant/restaurant.model';
 
 @Component({
   selector: 'app-manage-work-hours',
@@ -7,6 +8,8 @@ import {WorkTimeType} from 'work-time';
   styleUrls: ['./manage-work-hours.component.css']
 })
 export class ManageWorkHoursComponent implements OnInit {
+  @Input() restaurant: IRestaurant;
+
   days = [
     {name: 'sunday', id: 1},
     {name: 'monday', id: 2},
@@ -19,7 +22,11 @@ export class ManageWorkHoursComponent implements OnInit {
   public workTimeFrontend = [];
   public workTimeType = WorkTimeType.REGULAR;
   public readOnly = false;
-  public workTimeBackend = {
+  public workTimeBackend = {};
+  exceptionDate = null;
+  exceptionHours = '';
+
+  /*  public workTimeBackend = {
     monday: ['09:00-12:00', '13:00-18:00'],
     tuesday: ['09:00-12:00', '13:00-18:00'],
     wednesday: ['09:00-12:00'],
@@ -28,14 +35,19 @@ export class ManageWorkHoursComponent implements OnInit {
     saturday: ['09:00-12:00', '13:00-16:00'],
     sunday: [],
     exceptions: {'2016-11-11': ['09:00-12:00'], '2016-12-25': [], '01-01': [], '12-25': ['09:00-12:00']}
-  };
+  };*/
+
+  /*Front-end format
+  *
+  * */
 
   constructor() {
   }
 
   ngOnInit() {
+    this.workTimeBackend = JSON.parse(this.restaurant.work_schedule);
+    console.log(this.workTimeBackend);
     this.getWorkDaysHours();
-    // this.getExceptionsWorkTimes();
   }
 
   getWorkDaysHours() {
@@ -87,7 +99,7 @@ export class ManageWorkHoursComponent implements OnInit {
   }
 
   getExceptionsWorkHours(day) {
-    if (this.workTimeBackend.exceptions[day].length < 1) {
+    if (this.workTimeBackend.exceptions[day].length < 1 || this.workTimeBackend.exceptions[day][0] === '') {
       return ['All Day'];
     }
     return this.workTimeBackend.exceptions[day];
@@ -100,6 +112,30 @@ export class ManageWorkHoursComponent implements OnInit {
       return 'Anually';
     }
     return null;
+  }
+
+  addException() {
+    const dateString = this.exceptionDate;
+    if (!/[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}/gm.test(dateString)
+      &&
+      !(/[0-9]{1,2}-[0-9]{1,2}/gm.test(dateString))) {
+      alert('Incorrect Date Format!');
+      return false;
+    } else {
+      const workTimes = this.exceptionHours.toString().split(',');
+      workTimes.forEach(workTime => {
+        if (!/[0-9]{1,2}:[0-9]{1,2}/gm.test(workTime) && workTime !== '') {
+          alert('Wrong Hour Format!');
+          return false;
+        }
+        this.workTimeBackend.exceptions[this.exceptionDate] = workTimes;
+        console.log(workTimes);
+      });
+      this.exceptionDate = '';
+      this.exceptionHours = '';
+    }
+    console.log(this.exceptionDate);
+    console.log(this.exceptionHours);
   }
 
 }

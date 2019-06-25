@@ -9,4 +9,5 @@ export interface IRestaurant {
   'updated_at': string;
   'tables': ITable[];
   'foods'?: IFood[];
+  'work_schedule'?: any;
 }
