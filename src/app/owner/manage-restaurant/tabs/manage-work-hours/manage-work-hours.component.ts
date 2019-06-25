@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WorkTimeType} from 'work-time';
 import {IRestaurant} from '../../../../user/client/restaurant/restaurant.model';
+import {WorkHoursService} from '../../../services/work-hours.service';
 
 @Component({
   selector: 'app-manage-work-hours',
@@ -22,7 +23,7 @@ export class ManageWorkHoursComponent implements OnInit {
   public workTimeFrontend = [];
   public workTimeType = WorkTimeType.REGULAR;
   public readOnly = false;
-  public workTimeBackend = {};
+  public workTimeBackend: any = {};
   exceptionDate = null;
   exceptionHours = '';
 
@@ -41,11 +42,11 @@ export class ManageWorkHoursComponent implements OnInit {
   *
   * */
 
-  constructor() {
+  constructor(private workHoursService: WorkHoursService) {
   }
 
   ngOnInit() {
-    this.workTimeBackend = JSON.parse(JSON.parse(this.restaurant.work_schedule));
+    this.workTimeBackend = JSON.parse(this.restaurant.work_schedule);
     this.getWorkDaysHours();
   }
 
@@ -98,7 +99,7 @@ export class ManageWorkHoursComponent implements OnInit {
   }
 
   getExceptionsWorkHours(day) {
-    if (this.workTimeBackend.exceptions[day].length < 1 || this.workTimeBackend.exceptions[day][0] === '') {
+    if (this.workTimeBackend.exceptions[day].length < 1 || this.workTimeBackend.exceptions[day][0] === null) {
       return ['All Day'];
     }
     return this.workTimeBackend.exceptions[day];
@@ -128,13 +129,13 @@ export class ManageWorkHoursComponent implements OnInit {
           return false;
         }
         this.workTimeBackend.exceptions[this.exceptionDate] = workTimes;
-        console.log(workTimes);
       });
-      this.exceptionDate = '';
-      this.exceptionHours = '';
+      this.workHoursService.pushWorkHours(this.workTimeBackend, this.restaurant.id).subscribe(result => {
+        this.exceptionDate = '';
+        this.exceptionHours = '';
+        alert('Updated Work hours for ' + result['name']);
+      });
     }
-    console.log(this.exceptionDate);
-    console.log(this.exceptionHours);
   }
 
 }
