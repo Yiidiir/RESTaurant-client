@@ -138,4 +138,28 @@ export class ManageWorkHoursComponent implements OnInit {
     }
   }
 
+  updateWorkTimes() {
+    const backEndFormat = {};
+    this.workTimeFrontend.forEach(workTime => {
+      const xx = this.workTimeFrontend.filter(workt => {
+        return +workTime.weekday === +workt.weekday;
+      });
+      backEndFormat[this.dayNumberToDayName(workTime.weekday)] = this.getTimesArray(xx);
+    });
+    backEndFormat['exceptions'] = this.workTimeBackend.exceptions;
+    console.log(backEndFormat);
+    console.log(this.workTimeBackend);
+    this.workHoursService.pushWorkHours(backEndFormat, this.restaurant.id).subscribe(result => {
+      alert('Updated Work hours for ' + result['name']);
+    });
+  }
+
+  getTimesArray(frontEndObjects) {
+    const arr = [];
+    frontEndObjects.forEach((fEO) => {
+      arr.push(fEO.startTime + '-' + fEO.endTime);
+    });
+    return arr;
+  }
+
 }
