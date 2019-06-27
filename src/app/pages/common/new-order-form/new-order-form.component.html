@@ -66,13 +66,13 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order Date</span>
-            <input (ngModel)="orderDate" name="order_date" class="form-control" type="date" required="required">
+            <input [(ngModel)]="orderDate" name="order_date" class="form-control" (change)="checkRestaurantOpenStatus()"type="date" required="required">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order Time</span>
-            <ngb-timepicker [(ngModel)]="orderTime" [ngModelOptions]="{standalone: true}" class="form-control pt-4 pb-1"></ngb-timepicker>
+            <ngb-timepicker [(ngModel)]="orderTime" [ngModelOptions]="{standalone: true}" class="form-control pt-4 pb-1" (ngModelChange)="checkRestaurantOpenStatus()"></ngb-timepicker>
           </div>
         </div>
       </div>
@@ -124,8 +124,11 @@
         </div>
 
       </div>
+      <ngb-alert *ngIf="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open" [type]="'danger'">{{ getSelectedRestaurant.name }} will not be open before {{restaurantOpenStatus.next.date}}</ngb-alert>
+      <div class="form-group">
       <div class="form-btn">
         <input type="submit" class="submit-btn" value="Order Now">
+      </div>
       </div>
     </form>
   </div>

@@ -7,7 +7,8 @@ import {IRestaurant} from '../../../user/client/restaurant/restaurant.model';
 import {AuthService} from '../../../user/auth.service';
 import {IFood} from '../../../owner/manage-restaurant/food.model';
 import {ICart} from '../../../user/client/my-orders/cart.model';
-import {NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlertConfig, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import {WorkHoursService} from '../../../owner/services/work-hours.service';
 
 @Component({
   selector: 'app-new-order-form',
@@ -17,7 +18,7 @@ import {NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 export class NewOrderFormComponent implements OnInit {
   newOrder: IOrder;
   allRestaurants: IRestaurant[] = [];
-  orderDate: number;
+  orderDate: string = new Date().toISOString().slice(0, 10);
   orderTime = {hour: 13, minute: 30};
   restaurantId: number;
   loadedO = false;
@@ -27,10 +28,13 @@ export class NewOrderFormComponent implements OnInit {
   deliveryAddress: string;
   peopleCount: number;
   tableClass: number;
+  restaurantOpenStatus: any;
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,
-              private auth: AuthService, config: NgbTimepickerConfig) {
+              private auth: AuthService, config: NgbTimepickerConfig, private workHoursService: WorkHoursService,
+              private alertConfig: NgbAlertConfig) {
     config.spinners = false;
+    alertConfig.dismissible = false;
   }
 
   ngOnInit() {
@@ -44,7 +48,7 @@ export class NewOrderFormComponent implements OnInit {
   makeNewOrder(formValues) {
     if (this.auth.isAuthenticated()) {
       this.newOrder = <IOrder>formValues;
-      this.newOrder.order_time = this.orderTime.hour+':'+this.orderTime.minute;
+      this.newOrder.order_time = this.orderTime.hour + ':' + this.orderTime.minute;
       this.newOrder.order_time = Math.floor(new Date(formValues.order_date + ' ' + formValues.order_time).getTime() / 1000).toString();
       this.newOrder.menu_id = 0;
       this.newOrder.foods = JSON.stringify(this.liveCart.foods.map((food) => food.id));
@@ -64,6 +68,14 @@ export class NewOrderFormComponent implements OnInit {
       return this.allRestaurants.find((resto) => {
         return +this.restaurantId === +resto.id;
       }).foods;
+    }
+  }
+
+  get getSelectedRestaurant() {
+    if (this.loaded) {
+      return this.allRestaurants.find((resto) => {
+        return +this.restaurantId === +resto.id;
+      });
     }
   }
 
@@ -90,6 +102,14 @@ export class NewOrderFormComponent implements OnInit {
   removeItem(id) {
     this.liveCart.foods = this.liveCart.foods.filter((food) => {
       return +food.id !== +id;
+    });
+  }
+
+  checkRestaurantOpenStatus() {
+    const orderDate = this.orderDate;
+    const orderTime = this.orderTime.hour + ':' + this.orderTime.minute;
+    this.workHoursService.isOpen(orderDate, orderTime, +this.restaurantId).subscribe(res => {
+      this.restaurantOpenStatus = res;
     });
   }
 

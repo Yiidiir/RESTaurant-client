@@ -16,4 +16,10 @@ export class WorkHoursService {
       '/opening-hours', {work_hours: workHours}, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
     }));
   }
+
+  isOpen(date, hour, restaurantId) {
+    return this.http.get('/api/restaurants/' + restaurantId +
+      '/status/' + date + '/' + hour, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
+    }));
+  }
 }
