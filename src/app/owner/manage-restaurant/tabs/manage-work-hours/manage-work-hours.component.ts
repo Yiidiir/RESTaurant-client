@@ -140,12 +140,13 @@ export class ManageWorkHoursComponent implements OnInit {
 
   updateWorkTimes() {
     const backEndFormat = {};
-    this.workTimeFrontend.forEach(workTime => {
-      const xx = this.workTimeFrontend.filter(workt => {
-        return +workTime.weekday === +workt.weekday;
+    const weekDays = [1, 2, 3, 4, 5, 6, 7];
+    weekDays.forEach((day => {
+      const workHoursO = this.workTimeFrontend.filter(workt => {
+        return +day === +workt.weekday;
       });
-      backEndFormat[this.dayNumberToDayName(workTime.weekday)] = this.getTimesArray(xx);
-    });
+      backEndFormat[this.dayNumberToDayName(day)] = this.getTimesArray(workHoursO);
+    }));
     backEndFormat['exceptions'] = this.workTimeBackend.exceptions;
     console.log(backEndFormat);
     console.log(this.workTimeBackend);
