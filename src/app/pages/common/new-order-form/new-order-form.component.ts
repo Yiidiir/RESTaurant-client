@@ -26,8 +26,8 @@ export class NewOrderFormComponent implements OnInit {
   liveCart: ICart = <ICart> {foods: []};
   orderType = '0';
   deliveryAddress: string;
-  peopleCount: number;
-  tableClass: number;
+  peopleCount = 1;
+  tableClass = 3;
   restaurantOpenStatus: any;
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,

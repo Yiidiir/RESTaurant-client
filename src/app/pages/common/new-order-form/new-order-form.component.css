@@ -77,7 +77,7 @@
   appearance: none;
 }
 
-.booking-form select.form-control+.select-arrow {
+.booking-form select.form-control + .select-arrow {
   position: absolute;
   right: 6px;
   bottom: 6px;
@@ -90,7 +90,7 @@
   font-size: 14px;
 }
 
-.booking-form select.form-control+.select-arrow:after {
+.booking-form select.form-control + .select-arrow:after {
   content: '\279C';
   display: block;
   -webkit-transform: rotate(90deg);
@@ -123,11 +123,11 @@
   color: #191a1e;
 }
 
-.booking-form .form-checkbox label+label {
+.booking-form .form-checkbox label + label {
   margin-left: 15px;
 }
 
-.booking-form .form-checkbox input+span {
+.booking-form .form-checkbox input + span {
   position: absolute;
   left: 2px;
   top: 4px;
@@ -138,7 +138,7 @@
   border-radius: 50%;
 }
 
-.booking-form .form-checkbox input+span:after {
+.booking-form .form-checkbox input + span:after {
   content: '';
   position: absolute;
   top: 50%;
@@ -153,11 +153,11 @@
   transition: 0.2s all;
 }
 
-.booking-form .form-checkbox input:not(:checked)+span:after {
+.booking-form .form-checkbox input:not(:checked) + span:after {
   opacity: 0;
 }
 
-.booking-form .form-checkbox input:checked+span:after {
+.booking-form .form-checkbox input:checked + span:after {
   opacity: 1;
   width: 10px;
   height: 10px;
@@ -175,6 +175,10 @@
   text-transform: uppercase
 }
 
+.submit-btn:disabled {
+  background-color: #90c9ff !important;
+}
+
 .booking-cta {
   margin-top: 45px;
 }
@@ -190,6 +194,7 @@
   font-size: 22px;
   color: #191a1e;
 }
+
 .shopping-cart {
   margin-bottom: 10px;
 }

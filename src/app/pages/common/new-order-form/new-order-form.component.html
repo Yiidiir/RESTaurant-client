@@ -127,7 +127,7 @@
       <ngb-alert *ngIf="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open" [type]="'danger'">{{ getSelectedRestaurant.name }} will not be open before {{restaurantOpenStatus.next.date}}</ngb-alert>
       <div class="form-group">
       <div class="form-btn">
-        <input type="submit" class="submit-btn" value="Order Now">
+        <input type="submit" class="submit-btn" value="Order Now" [disabled]="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open">
       </div>
       </div>
     </form>
