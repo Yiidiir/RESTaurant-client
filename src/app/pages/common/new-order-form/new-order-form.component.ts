@@ -52,10 +52,11 @@ export class NewOrderFormComponent implements OnInit {
     if (this.auth.isAuthenticated()) {
       this.newOrder = <IOrder>formValues;
       this.newOrder.order_time = this.orderTime.hour + ':' + this.orderTime.minute;
-      this.newOrder.order_time = Math.floor(new Date(formValues.order_date + ' ' + formValues.order_time).getTime() / 1000).toString();
+      this.newOrder.order_date = this.orderDate;
       this.newOrder.menu_id = 0;
       this.newOrder.foods = JSON.stringify(this.liveCart.foods.map((food) => food.id));
       this.newOrder.order_type = this.orderType;
+      this.newOrder.table_id = this.selectedTable;
       console.log(this.newOrder);
       this.orderS.makeOrder(this.newOrder).subscribe((data) => {
         alert('Thank you for your order');

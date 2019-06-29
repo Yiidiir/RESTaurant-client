@@ -132,16 +132,16 @@
       <ngb-alert *ngIf="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open" [type]="'danger'">{{
         getSelectedRestaurant.name }} will not be open before {{restaurantOpenStatus.next.date}}
       </ngb-alert>
-      <ngb-alert *ngIf="availableTables.length < 1 && selectedTable == -1" [type]="'danger'">No table available
+      <ngb-alert *ngIf="availableTables.length < 1 && selectedTable == -1 && orderType == 0" [type]="'danger'">No table available
         available for that criteria or at that time!
       </ngb-alert>
-      <ngb-alert *ngIf="availableTables.length > 0 && selectedTable != -1" [type]="'success'">We found a Table that fulfills your
+      <ngb-alert *ngIf="availableTables.length > 0 && selectedTable != -1 && orderType == 0" [type]="'success'">We found a Table that fulfills your
         criteria!
       </ngb-alert>
       <div class="form-group">
         <div class="form-btn">
           <input type="submit" class="submit-btn" value="Order Now"
-                 [disabled]="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open || availableTables.length < 1 && selectedTable == -1">
+                 [disabled]="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open || (availableTables.length < 1 && selectedTable == -1 && orderType == 0)">
         </div>
       </div>
     </form>

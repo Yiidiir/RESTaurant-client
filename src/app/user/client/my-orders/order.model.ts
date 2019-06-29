@@ -7,9 +7,11 @@ export interface IOrder {
   'client_id'?: number;
   'client_fullname'?: string;
   'order_time': string;
+  'order_date': string;
   'order_status'?: string;
   'order_type'?: string;
   'menu_id': number;
   'foods'?: any;
   'price'?: number;
+  'table_id'?: number;
 }
