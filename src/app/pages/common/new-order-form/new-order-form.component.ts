@@ -29,6 +29,8 @@ export class NewOrderFormComponent implements OnInit {
   peopleCount = 1;
   tableClass = 3;
   restaurantOpenStatus: any;
+  availableTables: number[] = [];
+  selectedTable: number;
 
   constructor(private orderS: OrderService, private router: Router, private restaurantS: RestaurantService,
               private auth: AuthService, config: NgbTimepickerConfig, private workHoursService: WorkHoursService,
@@ -42,6 +44,7 @@ export class NewOrderFormComponent implements OnInit {
       this.allRestaurants = <IRestaurant[]>data['data'];
       this.restaurantId = this.allRestaurants[0].id;
       this.loadedO = true;
+      this.findFreeTable();
     });
   }
 
@@ -110,6 +113,21 @@ export class NewOrderFormComponent implements OnInit {
     const orderTime = this.orderTime.hour + ':' + this.orderTime.minute;
     this.workHoursService.isOpen(orderDate, orderTime, +this.restaurantId).subscribe(res => {
       this.restaurantOpenStatus = res;
+    });
+  }
+
+  findFreeTable() {
+    const orderDate = this.orderDate;
+    const orderTime = this.orderTime.hour + ':' + this.orderTime.minute;
+    this.restaurantS.getAvailableTables(this.restaurantId, +this.tableClass, +this.peopleCount,
+      orderDate, orderTime).subscribe(res => {
+      this.availableTables = <number[]> res;
+      console.log(this.availableTables);
+      if (this.availableTables.length < 1) {
+        this.selectedTable = -1;
+      } else {
+        this.selectedTable = this.availableTables[Math.floor(Math.random() * this.availableTables.length)];
+      }
     });
   }
 

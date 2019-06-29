@@ -18,7 +18,8 @@
         <div class="card-body">
           <div class="row m-1" *ngFor="let product of getFoodInCart">
             <div class="col-12 col-sm-12 col-md-2 text-center">
-              <img class="img-responsive" src="assets/images/food-default.jpg" alt="Food Default image" width="120" height="80">
+              <img class="img-responsive" src="assets/images/food-default.jpg" alt="Food Default image" width="120"
+                   height="80">
             </div>
             <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
               <h4 class="product-name"><strong>{{product.name}}</strong></h4>
@@ -43,7 +44,8 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order food from (Restaurant)</span>
-            <select (change)="resetCart()" class="form-control" [(ngModel)]="restaurantId" name="restaurant_id" required="required">
+            <select (change)="resetCart()" class="form-control" [(ngModel)]="restaurantId" name="restaurant_id"
+                    required="required">
               <option *ngFor="let restaurant of allRestaurants" value="{{restaurant.id}}">{{restaurant.name}}</option>
             </select>
             <span class="select-arrow"></span>
@@ -66,13 +68,15 @@
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order Date</span>
-            <input [(ngModel)]="orderDate" name="order_date" class="form-control" (change)="checkRestaurantOpenStatus()"type="date" required="required">
+            <input [(ngModel)]="orderDate" name="order_date" class="form-control" (change)="checkRestaurantOpenStatus()"
+                   type="date" required="required">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <span class="form-label">Order Time</span>
-            <ngb-timepicker [(ngModel)]="orderTime" [ngModelOptions]="{standalone: true}" class="form-control pt-4 pb-1" (ngModelChange)="checkRestaurantOpenStatus()"></ngb-timepicker>
+            <ngb-timepicker [(ngModel)]="orderTime" [ngModelOptions]="{standalone: true}" class="form-control pt-4 pb-1"
+                            (ngModelChange)="checkRestaurantOpenStatus()"></ngb-timepicker>
           </div>
         </div>
       </div>
@@ -87,7 +91,7 @@
         <div class="col-md-4" *ngIf="orderType == '0'">
           <div class="form-group">
             <span class="form-label">People</span>
-            <select class="form-control" name="people_count" [ngModel]="peopleCount">
+            <select class="form-control" name="people_count" [(ngModel)]="peopleCount" (change)="findFreeTable()">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -102,10 +106,10 @@
             <span class="select-arrow"></span>
           </div>
         </div>
-        <div class="col-md-4" *ngIf="orderType == '0'">
+        <div class="col-md-4" *ngIf="orderType == '0'" (change)="findFreeTable()">
           <div class="form-group">
             <span class="form-label">Table class</span>
-            <select class="form-control" name="table_class" [ngModel]="tableClass">
+            <select class="form-control" name="table_class" [(ngModel)]="tableClass">
               <option value="1">⭐</option>
               <option value="2">⭐⭐</option>
               <option value="3" selected>⭐⭐⭐ (Normal)</option>
@@ -118,17 +122,27 @@
         <div class="col-md-8" *ngIf="orderType == '1'">
           <div class="form-group">
             <span class="form-label">Address</span>
-            <input class="form-control" [ngModel]="deliveryAddress" type="text" id="delivery_address" name="delivery_address" required="required">
+            <input class="form-control" [ngModel]="deliveryAddress" type="text" id="delivery_address"
+                   name="delivery_address" required="required">
             <span class="select-arrow"></span>
           </div>
         </div>
 
       </div>
-      <ngb-alert *ngIf="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open" [type]="'danger'">{{ getSelectedRestaurant.name }} will not be open before {{restaurantOpenStatus.next.date}}</ngb-alert>
+      <ngb-alert *ngIf="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open" [type]="'danger'">{{
+        getSelectedRestaurant.name }} will not be open before {{restaurantOpenStatus.next.date}}
+      </ngb-alert>
+      <ngb-alert *ngIf="availableTables.length < 1 && selectedTable == -1" [type]="'danger'">No table available
+        available for that criteria or at that time!
+      </ngb-alert>
+      <ngb-alert *ngIf="availableTables.length > 0 && selectedTable != -1" [type]="'success'">We found a Table that fulfills your
+        criteria!
+      </ngb-alert>
       <div class="form-group">
-      <div class="form-btn">
-        <input type="submit" class="submit-btn" value="Order Now" [disabled]="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open">
-      </div>
+        <div class="form-btn">
+          <input type="submit" class="submit-btn" value="Order Now"
+                 [disabled]="restaurantOpenStatus !== undefined && !restaurantOpenStatus.open || availableTables.length < 1 && selectedTable == -1">
+        </div>
       </div>
     </form>
   </div>

@@ -27,8 +27,14 @@ export class RestaurantService {
     console.log(restaurant);
     const headers = this.auth.getHttpHeadersWithToken();
     headers.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-    return this.http.patch('/api/restaurants/' + restaurant.id, restaurant,  headers).pipe(tap(data => {
+    return this.http.patch('/api/restaurants/' + restaurant.id, restaurant, headers).pipe(tap(data => {
     }));
   }
 
+  getAvailableTables(restaurantId: number, classx: number, peopleCount: number, date: string, time: string) {
+    return this.http.get('/api/restaurants/' + restaurantId +
+      '/availableTables/' + classx + '/' + peopleCount +
+      '/' + date + '/' + time, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
+    }));
+  }
 }
