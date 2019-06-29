@@ -8,11 +8,12 @@
   </div>
 </form>
 
-<table class="table table-striped" *ngIf="orders.length>0">
+<table class="table table-striped" *ngIf="orders.length>0 && isLoading == false">
   <thead>
   <tr>
     <th scope="col">#</th>
     <th scope="col">Client</th>
+    <th scope="col">Type</th>
     <th scope="col">Menu</th>
     <th scope="col">Order Time</th>
     <th scope="col">Status</th>
@@ -23,14 +24,14 @@
   <tbody>
   <tr *ngFor="let order of orders$ | async; index as i">
     <th scope="row">
-      <ngb-highlight [result]="order.id" [term]="filter.value"></ngb-highlight></th>
+      <ngb-highlight [result]="order.id" [term]="filter.value"></ngb-highlight>
+    </th>
     <td>
       <ngb-highlight [result]="order.client_fullname" [term]="filter.value"></ngb-highlight>
     </td>
-    <!--<td>-->
-    <!--<img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + order.flag" class="mr-2" style="width: 20px">-->
-    <!--<ngb-highlight [result]="order.name" [term]="filter.value"></ngb-highlight>-->
-    <!--</td>-->
+    <td>
+      <ngb-highlight [result]="order.order_type" [term]="filter.value" class="h6"></ngb-highlight>
+    </td>
     <td>
       <ul>
         <li *ngFor="let food of order.foods">
@@ -39,25 +40,27 @@
       </ul>
     </td>
     <td>
-      <ngb-highlight [result]="order.order_time" [term]="filter.value"></ngb-highlight>
+      <ngb-highlight [result]="order.order_time" [term]="filter.value" class="h6"></ngb-highlight>
     </td>
     <td>
-      <ngb-highlight [result]="order.order_status" [term]="filter.value"></ngb-highlight>
+      <h5><span class="badge badge-{{getBadgeColor(order.order_status)}}">{{order.order_status}}</span>
+      </h5>
     </td>
     <td>
       <ngb-highlight [result]="order.price" [term]="filter.value"></ngb-highlight>.00 DZD
     <td>
-    <div class="btn-group mr-3">
-      <button type="button" class="btn btn-outline-success">Mark as completed</button>
-      <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-        <button class="btn btn-outline-success dropdown-toggle-split" ngbDropdownToggle></button>
-        <div class="dropdown-menu" ngbDropdownMenu>
-          <button ngbDropdownItem>Cancel Order</button>
-          <button ngbDropdownItem>View Client Info</button>
-          <button ngbDropdownItem>View payment Info</button>
+      <div class="btn-group mr-3">
+        <button type="button" class="btn btn-outline-success" (click)="confirmOrder(order.id)">Mark as completed</button>
+        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+          <button class="btn btn-outline-success dropdown-toggle-split" ngbDropdownToggle></button>
+          <div class="dropdown-menu" ngbDropdownMenu>
+            <button ngbDropdownItem (click)="cancelOrder(order.id)">Cancel Order</button>
+            <button ngbDropdownItem>{{ getInfoType(order.order_type)}}</button>
+            <button ngbDropdownItem>View payment Info</button>
+          </div>
         </div>
       </div>
-    </div></td>
+    </td>
   </tr>
   </tbody>
 </table>

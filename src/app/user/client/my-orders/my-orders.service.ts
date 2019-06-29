@@ -30,4 +30,9 @@ export class MyOrdersService {
               this.currentUser = null;*/
     }));
   }
+
+  updateOrderStatus(orderId: number, newStatus: number) {
+    return this.http.get('/api/orders/' + orderId + '/update-status/' + newStatus, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
+    }));
+  }
 }

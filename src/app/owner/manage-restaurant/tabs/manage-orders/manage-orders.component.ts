@@ -18,6 +18,7 @@ export class ManageOrdersComponent implements OnInit {
   orders$: Observable<IOrder[]>;
   filter = new FormControl('');
   orders: IOrder[] = [];
+  isLoading = true;
 
   constructor(pipe: LowerCasePipe, private ordersService: MyOrdersService) {
     this.orders$ = this.filter.valueChanges.pipe(
@@ -27,9 +28,7 @@ export class ManageOrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ordersService.getMyOrders().subscribe((data) => {
-      this.orders = <IOrder[]> data['data'];
-    });
+    this.loadOrders();
   }
 
   search(text: string, pipe: PipeTransform): IOrder[] {
@@ -42,5 +41,45 @@ export class ManageOrdersComponent implements OnInit {
         || order.id.toFixed().includes(term);
     });
   }
+
+  getBadgeColor(status) {
+    if (status === 'Processing') {
+      return 'warning';
+    } else {
+      if (status === 'Completed') {
+        return 'success';
+      } else {
+        return 'secondary';
+      }
+    }
+  }
+
+  cancelOrder(orderId) {
+    this.ordersService.updateOrderStatus(orderId, 0).subscribe(res => {
+      this.loadOrders();
+    });
+  }
+
+  confirmOrder(orderId) {
+    this.ordersService.updateOrderStatus(orderId, 2).subscribe(res => {
+      this.loadOrders();
+    });
+  }
+
+  loadOrders() {
+    this.isLoading = true;
+    this.ordersService.getMyOrders().subscribe((data) => {
+      this.orders = <IOrder[]> data['data'];
+      this.isLoading = false;
+    });
+  }
+
+  getInfoType(type) {
+    if (type === 'Food Delivery') {
+      return 'Delivery Details';
+    }
+    return 'Booking Details';
+  }
+
 
 }
