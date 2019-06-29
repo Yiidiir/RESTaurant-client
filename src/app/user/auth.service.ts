@@ -101,7 +101,7 @@ export class AuthService {
         // data = data['data'];
         console.log(data);
         if (true) {
-          return this.currentUser = <IUser>data;
+          return this.currentUser = <IUser> data;
         }
         /*        console.log('Invalid Token');
                 localStorage.removeItem('token');
@@ -110,7 +110,15 @@ export class AuthService {
 
     }
   }
+
   getHttpHeadersWithToken() {
     return this.httpOptionsWithBearer;
+  }
+
+  updateProfile(editedProfile) {
+    const headers = this.getHttpHeadersWithToken();
+    headers.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    return this.http.patch('/api/users/' + this.currentUser.id, editedProfile, headers).pipe(tap(data => {
+    }));
   }
 }

@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { MyOrdersComponent } from './client/my-orders/my-orders.component';
+import { EditProfileComponent } from './client/edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MyOrdersComponent } from './client/my-orders/my-orders.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    EditProfileComponent
   ]
 })
 export class UserModule {

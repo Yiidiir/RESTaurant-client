@@ -5,4 +5,5 @@ export interface IUser {
   email: string;
   role: number;
   api_token: string;
+  join_date?: string;
 }
