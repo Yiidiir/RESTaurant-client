@@ -1,6 +1,6 @@
 <div class="container col-md-3 my-2" *ngIf="currentUser !== undefined">
   <form #editProfileForm="ngForm" (ngSubmit)="updateProfile(editProfileForm.value)">
-    <h2>Edit profile</h2>
+    <h2 class="display-4">Edit profile</h2>
     <div class="form-group">
       <label for="first_name">First Name</label>
       <input [(ngModel)]="currentUser.first_name"
