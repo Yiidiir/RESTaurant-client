@@ -29,6 +29,7 @@
               <button *ngIf="auth.isAuthenticated()" class="dropdown-item" [routerLink]="['/user/my-profile']">My Profile</button>
               <button *ngIf="auth.isAuthenticated() && auth.isClient()" class="dropdown-item" [routerLink]="['/user/my-orders']">My Orders</button>
               <button *ngIf="auth.isAuthenticated() && auth.isOwner()" class="dropdown-item" [routerLink]="['/owner/manage-restaurants']">Manage Restaurants</button>
+              <button *ngIf="auth.isAuthenticated() && auth.isAdmin()" class="dropdown-item" [routerLink]="['/admin/manage-users']">Manage Users</button>
               <button *ngIf="auth.isAuthenticated()" class="dropdown-item" (click)="signOut()">Sign Out</button>
             </div>
           </div>
