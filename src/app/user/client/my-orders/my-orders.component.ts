@@ -9,14 +9,16 @@ import {IOrder} from './order.model';
 })
 export class MyOrdersComponent implements OnInit {
   myOrders: IOrder[] = [];
+  isLoading = true;
 
 
-  constructor(private orderService: MyOrdersService) {
+  constructor(private orderService: MyOrdersService, private ordersService: MyOrdersService) {
   }
 
   ngOnInit() {
     this.orderService.getMyOrders().subscribe((data) => {
       this.myOrders = data['data'];
+      this.isLoading = false;
     });
   }
 
@@ -30,6 +32,20 @@ export class MyOrdersComponent implements OnInit {
         return 'secondary';
       }
     }
+  }
+
+  cancelOrder(orderId) {
+    this.ordersService.updateOrderStatus(orderId, 0).subscribe(res => {
+      this.loadOrders();
+    });
+  }
+
+  loadOrders() {
+    this.isLoading = true;
+    this.ordersService.getMyOrders().subscribe((data) => {
+      this.myOrders = <IOrder[]> data['data'];
+      this.isLoading = false;
+    });
   }
 
 

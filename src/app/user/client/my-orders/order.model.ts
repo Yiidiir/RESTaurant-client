@@ -14,4 +14,5 @@ export interface IOrder {
   'foods'?: any;
   'price'?: number;
   'table_id'?: number;
+  'client_cancellable'?: boolean;
 }
