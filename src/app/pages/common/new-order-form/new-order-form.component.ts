@@ -59,7 +59,7 @@ export class NewOrderFormComponent implements OnInit {
       this.newOrder.table_id = this.selectedTable;
       console.log(this.newOrder);
       this.orderS.makeOrder(this.newOrder).subscribe((data) => {
-        alert('Thank you for your order');
+        alert('Thank you for your user');
         this.router.navigate(['user/my-orders']);
       });
     } else {
