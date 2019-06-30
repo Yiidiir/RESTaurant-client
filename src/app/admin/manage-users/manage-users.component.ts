@@ -38,6 +38,7 @@ export class ManageUsersComponent implements OnInit {
         || user.last_name.toLowerCase().includes(term)
         || user.email.toLowerCase().includes(term)
         || user.join_date.toLowerCase().includes(term)
+        || user.phone_number.toString().includes(term)
         || this.getUserRoleText(user.role).toLowerCase().includes(term);
     });
   }
