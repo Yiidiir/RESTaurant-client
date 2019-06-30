@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {StripeService, Elements, Element as StripeElement, ElementsOptions} from 'ngx-stripe';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {StripePaymentService} from '../stripe-payment.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-pay-order',
@@ -12,6 +14,7 @@ export class PayOrderComponent implements OnInit {
   card: StripeElement;
   error = false;
   successPay = false;
+  orderId = 25;
 
   elementsOptions: ElementsOptions = {
     locale: 'en'
@@ -20,7 +23,9 @@ export class PayOrderComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private stripeService: StripeService) {
+    private stripeService: StripeService,
+    private payService: StripePaymentService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -58,6 +63,24 @@ export class PayOrderComponent implements OnInit {
       .createToken(this.card, {name})
       .subscribe(result => {
         if (result.token) {
+          const res = result.token;
+          const transaction = {
+            t_id: res.id,
+            payer_name: res.card.name,
+            payer_ip: res.client_ip,
+            payment_timestamp: res.created,
+            card_brand: res.card.brand,
+            card_country: res.card.country,
+            card_zip: res.card.address_zip,
+            card_exp: res.card.exp_month + '/' + res.card.exp_year,
+            card_id: res.card.id,
+            card_last4: res.card.last4,
+          };
+          this.payService.generateTransaction(transaction, this.orderId).subscribe(res => {
+            console.log(res);
+            alert('Payment success!');
+            this.router.navigate(['/user/my-orders']);
+          });
           // Use the token to create a charge or a customer
           // https://stripe.com/docs/charges
           console.log(result.token);

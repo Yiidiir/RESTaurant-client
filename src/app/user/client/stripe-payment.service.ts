@@ -13,7 +13,7 @@ export class StripePaymentService {
   }
 
   generateTransaction(transaction, orderId: number) {
-    return this.http.post('/api/orders/' + orderId, transaction, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
+    return this.http.post('/api/orders/' + orderId + '/charge-card', transaction, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
     }));
   }
 
