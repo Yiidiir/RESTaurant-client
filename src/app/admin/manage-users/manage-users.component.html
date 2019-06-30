@@ -27,25 +27,25 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of users$ | async; index as i">
+          <tr *ngFor="let order of users$ | async; index as i">
             <th scope="row">
-              <ngb-highlight [result]="user.id" [term]="filter.value"></ngb-highlight>
+              <ngb-highlight [result]="order.id" [term]="filter.value"></ngb-highlight>
             </th>
             <td>
-              <ngb-highlight [result]="user.first_name+' '" [term]="filter.value"></ngb-highlight>
-              <ngb-highlight [result]="user.last_name" [term]="filter.value"></ngb-highlight>
+              <ngb-highlight [result]="order.first_name+' '" [term]="filter.value"></ngb-highlight>
+              <ngb-highlight [result]="order.last_name" [term]="filter.value"></ngb-highlight>
             </td>
             <td>
-              <ngb-highlight [result]="user.email" [term]="filter.value" class="h6"></ngb-highlight>
+              <ngb-highlight [result]="order.email" [term]="filter.value" class="h6"></ngb-highlight>
             </td>
             <td>
-              <ngb-highlight [result]="user.phone_number" [term]="filter.value" class="h6"></ngb-highlight>
+              <ngb-highlight [result]="order.phone_number" [term]="filter.value" class="h6"></ngb-highlight>
             </td>
             <td>
-              <ngb-highlight [result]="user.join_date" [term]="filter.value" class="h6"></ngb-highlight>
+              <ngb-highlight [result]="order.join_date" [term]="filter.value" class="h6"></ngb-highlight>
             </td>
             <td>
-              <ngb-highlight [result]="getUserRoleText(user.role)" [term]="filter.value" class="h6"></ngb-highlight>
+              <ngb-highlight [result]="getUserRoleText(order.role)" [term]="filter.value" class="h6"></ngb-highlight>
             </td>
             <td>
               <button type="button" class="btn btn-outline-primary">Change role</button>

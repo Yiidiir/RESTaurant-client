@@ -14,21 +14,21 @@
 
       <!-- Timeline -->
       <ul class="timeline" *ngIf="isLoading == false">
-        <li *ngFor="let user of myOrders" class="timeline-item bg-white rounded ml-3 p-4 shadow">
+        <li *ngFor="let order of myOrders" class="timeline-item bg-white rounded ml-3 p-4 shadow">
           <div class="timeline-arrow"></div>
-          <h2 class="h5 mb-0">Order #{{user.id}} from {{user.restaurant_name}}</h2><span class="small text-gray"><i
-          class="fa fa-clock-o mr-1"></i> Ordered for: {{user.order_time}}</span>
-          <h3><span class="badge badge-{{getBadgeColor(order.order_status)}}">{{user.order_status}}</span><span
-            class="badge badge-light">{{user.order_type}}</span></h3>
+          <h2 class="h5 mb-0">Order #{{order.id}} from {{order.restaurant_name}}</h2><span class="small text-gray"><i
+          class="fa fa-clock-o mr-1"></i> Ordered for: {{order.order_time}}</span>
+          <h3><span class="badge badge-{{getBadgeColor(order.order_status)}}">{{order.order_status}}</span><span
+            class="badge badge-light">{{order.order_type}}</span></h3>
           <p class="text-md-left font-weight-bold mb-0">Contains: </p>
           <ul class="mb-1">
-            <li *ngFor="let food of user.foods">{{food.name}} ({{food.price}}.00 DZD)</li>
+            <li *ngFor="let food of order.foods">{{food.name}} ({{food.price}}.00 DZD)</li>
           </ul>
           <div class="form-group">
-            <h2>Total price<span class="badge badge-secondary ml-1">{{user.price}}.00 DZD</span></h2>
+            <h2>Total price<span class="badge badge-secondary ml-1">{{order.price}}.00 DZD</span></h2>
           </div>
-          <div class="form-group" *ngIf="user.client_cancellable">
-            <button type="button" class="btn btn-outline-dark" (click)="cancelOrder(user.id)">Cancel Order</button>
+          <div class="form-group" *ngIf="order.client_cancellable">
+            <button type="button" class="btn btn-outline-dark" (click)="cancelOrder(order.id)">Cancel Order</button>
           </div>
         </li>
       </ul><!-- End -->
