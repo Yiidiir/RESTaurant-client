@@ -8,7 +8,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { MyOrdersComponent } from './client/my-orders/my-orders.component';
 import { EditProfileComponent } from './client/edit-profile/edit-profile.component';
-
+import { PayOrderComponent } from './client/pay-order/pay-order.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   imports: [
@@ -16,13 +17,15 @@ import { EditProfileComponent } from './client/edit-profile/edit-profile.compone
     RouterModule.forChild(userRoutes),
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxStripeModule.forRoot('pk_test_b9B7nRWbnMNnZW6ig0ubbb4Z00J8pSalsu'),
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
     MyOrdersComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    PayOrderComponent
   ]
 })
 export class UserModule {
