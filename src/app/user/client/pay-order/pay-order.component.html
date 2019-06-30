@@ -1,7 +1,30 @@
-<form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
-  <input type="text" formControlName="name" placeholder="Jane Doe">
-  <div id="card-element" class="field"></div>
-  <button type="submit">
-    BUY
-  </button>
-</form>
+<div class="container col-3 my-4">
+    <ngb-tabset #t="ngbTabset" type="pills">
+      <ngb-tab id="tab-selectbyid1">
+        <ng-template ngbTabTitle>Credit Card</ng-template>
+        <ng-template ngbTabContent>
+          <div class="my-1">
+            <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
+              <div class="form-group">
+                <label for="name">Full name (on the card)</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="" required="">
+              </div>
+
+              <div class="form-group">
+                <div id="card-element" class="field"></div>
+              </div>
+              <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm  </button>
+            </form>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="tab-selectbyid2">
+        <ng-template ngbTabTitle>Cash</ng-template>
+        <ng-template ngbTabContent>
+          <div class="my-2">
+            <ngb-alert [type]="'info'" >Please pay in cash when getting to the restaurant</ngb-alert>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>

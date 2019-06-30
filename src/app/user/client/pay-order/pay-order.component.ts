@@ -10,9 +10,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class PayOrderComponent implements OnInit {
   elements: Elements;
   card: StripeElement;
+  error = false;
+  successPay = false;
 
   elementsOptions: ElementsOptions = {
-    locale: 'fr'
+    locale: 'en'
   };
   stripeTest: FormGroup;
 
