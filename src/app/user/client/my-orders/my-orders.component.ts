@@ -25,12 +25,12 @@ export class MyOrdersComponent implements OnInit {
   getBadgeColor(status) {
     if (status === 'Processing') {
       return 'warning';
+    } else if (status === 'Completed') {
+      return 'success';
+    } else if (status === 'Waiting for payment') {
+      return 'info';
     } else {
-      if (status === 'Completed') {
-        return 'success';
-      } else {
-        return 'secondary';
-      }
+      return 'secondary';
     }
   }
 
