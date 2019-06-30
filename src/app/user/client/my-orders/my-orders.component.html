@@ -30,6 +30,9 @@
           <div class="form-group" *ngIf="order.client_cancellable">
             <button type="button" class="btn btn-outline-dark" (click)="cancelOrder(order.id)">Cancel Order</button>
           </div>
+          <div class="form-group" *ngIf="order.order_status === 'Waiting for payment'">
+            <button type="button" class="btn btn-outline-dark" (click)="openPayOrder(order.id)">Pay Now</button>
+          </div>
         </li>
       </ul><!-- End -->
 

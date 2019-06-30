@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {StripeService, Elements, Element as StripeElement, ElementsOptions} from 'ngx-stripe';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {StripePaymentService} from '../stripe-payment.service';
 import {Router} from '@angular/router';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pay-order',
@@ -14,7 +15,8 @@ export class PayOrderComponent implements OnInit {
   card: StripeElement;
   error = false;
   successPay = false;
-  orderId = 25;
+  @Input() orderId: number;
+  @Output() paid = new EventEmitter();
 
   elementsOptions: ElementsOptions = {
     locale: 'en'
@@ -25,6 +27,7 @@ export class PayOrderComponent implements OnInit {
     private fb: FormBuilder,
     private stripeService: StripeService,
     private payService: StripePaymentService,
+    private modalService: NgbActiveModal,
     private router: Router) {
   }
 
@@ -79,7 +82,8 @@ export class PayOrderComponent implements OnInit {
           this.payService.generateTransaction(transaction, this.orderId).subscribe(res => {
             console.log(res);
             alert('Payment success!');
-            this.router.navigate(['/user/my-orders']);
+            this.paid.emit('paid');
+            this.modalService.close();
           });
           // Use the token to create a charge or a customer
           // https://stripe.com/docs/charges

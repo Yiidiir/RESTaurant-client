@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MyOrdersService} from './my-orders.service';
 import {IOrder} from './order.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {PayOrderComponent} from '../pay-order/pay-order.component';
 
 @Component({
   selector: 'app-my-orders',
@@ -12,7 +14,8 @@ export class MyOrdersComponent implements OnInit {
   isLoading = true;
 
 
-  constructor(private orderService: MyOrdersService, private ordersService: MyOrdersService) {
+  constructor(private orderService: MyOrdersService, private ordersService: MyOrdersService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -45,6 +48,14 @@ export class MyOrdersComponent implements OnInit {
     this.ordersService.getMyOrders().subscribe((data) => {
       this.myOrders = <IOrder[]> data['data'];
       this.isLoading = false;
+    });
+  }
+
+  openPayOrder(orderId: number) {
+    const payOrderModal = this.modalService.open(PayOrderComponent);
+    payOrderModal.componentInstance.orderId = orderId;
+    payOrderModal.componentInstance.paid.subscribe(($e) => {
+      this.loadOrders();
     });
   }
 
