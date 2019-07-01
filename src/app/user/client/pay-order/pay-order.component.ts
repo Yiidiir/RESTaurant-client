@@ -71,7 +71,7 @@ export class PayOrderComponent implements OnInit {
             t_id: res.id,
             payer_name: res.card.name,
             payer_ip: res.client_ip,
-            payment_timestamp: res.created,
+            payment_timestamp: res['created'],
             card_brand: res.card.brand,
             card_country: res.card.country,
             card_zip: res.card.address_zip,
