@@ -6,4 +6,5 @@ export interface IUser {
   role: number;
   api_token: string;
   join_date?: string;
+  phone_number?: string;
 }
