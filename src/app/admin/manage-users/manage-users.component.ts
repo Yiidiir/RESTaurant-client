@@ -3,7 +3,9 @@ import {ManageUsersService} from '../manage-users.service';
 import {Observable} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {LowerCasePipe} from '@angular/common';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {AuthService} from '../../user/auth.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -20,7 +22,8 @@ export class ManageUsersComponent implements OnInit {
   users: Array<any>;
   isLoading = true;
 
-  constructor(pipe: LowerCasePipe, private manageUsers: ManageUsersService) {
+  constructor(pipe: LowerCasePipe, private manageUsers: ManageUsersService,
+              private http: HttpClient, private  auth: AuthService) {
     this.users$ = this.filter.valueChanges.pipe(
       startWith(''),
       map(text => this.search(text, pipe))
@@ -59,6 +62,14 @@ export class ManageUsersComponent implements OnInit {
       return 'Restaurant Owner';
     }
     return 'System Admin';
+  }
+
+  changeRole(userId) {
+    return this.http.get('/api/users/role/' + userId, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
+    })).subscribe(result => {
+      alert('Role for User #' + userId + ' changed!');
+      this.loadUsers();
+    });
   }
 
 

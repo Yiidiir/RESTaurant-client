@@ -48,7 +48,7 @@
               <ngb-highlight [result]="getUserRoleText(order.role)" [term]="filter.value" class="h6"></ngb-highlight>
             </td>
             <td>
-              <button type="button" class="btn btn-outline-primary">Change role</button>
+              <button type="button" class="btn btn-outline-primary" (click)="changeRole(order.id)">Change role</button>
             </td>
           </tr>
           </tbody>
