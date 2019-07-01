@@ -1,4 +1,4 @@
-import {Component, OnInit, PipeTransform} from '@angular/core';
+import {Component, Input, OnInit, PipeTransform} from '@angular/core';
 import {LowerCasePipe} from '@angular/common';
 import {FormControl} from '@angular/forms';
 
@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {IOrder} from '../../../../user/client/my-orders/order.model';
 import {MyOrdersService} from '../../../../user/client/my-orders/my-orders.service';
+import {IRestaurant} from '../../../../user/client/restaurant/restaurant.model';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class ManageOrdersComponent implements OnInit {
   filter = new FormControl('');
   orders: IOrder[] = [];
   isLoading = true;
+  @Input() restaurant: IRestaurant;
+
 
   constructor(pipe: LowerCasePipe, private ordersService: MyOrdersService) {
     this.orders$ = this.filter.valueChanges.pipe(
@@ -68,7 +71,7 @@ export class ManageOrdersComponent implements OnInit {
 
   loadOrders() {
     this.isLoading = true;
-    this.ordersService.getMyOrders().subscribe((data) => {
+    this.ordersService.getMyOrders(this.restaurant.id +'/allOrders').subscribe((data) => {
       this.orders = <IOrder[]> data['data'];
       this.isLoading = false;
     });

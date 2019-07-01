@@ -15,7 +15,7 @@ export class MyOrdersService {
   constructor(private auth: AuthService, private http: HttpClient) {
   }
 
-  getMyOrders() {
+  getMyOrders(restaurantId = '') {
     const httpOptionsWithBearer = {
       headers: new HttpHeaders({
         Accept: 'application/json',
@@ -24,7 +24,7 @@ export class MyOrdersService {
       })
     };
 
-    return this.http.get('/api/orders/', httpOptionsWithBearer).pipe(tap(data => {
+    return this.http.get('/api/orders/' + restaurantId, httpOptionsWithBearer).pipe(tap(data => {
       /*        console.log('Invalid Token');
               localStorage.removeItem('token');
               this.currentUser = null;*/
