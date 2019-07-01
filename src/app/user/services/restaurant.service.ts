@@ -37,4 +37,11 @@ export class RestaurantService {
       '/' + date + '/' + time, this.auth.getHttpHeadersWithToken()).pipe(tap(data => {
     }));
   }
+
+  addRestaurant(restaurant: IRestaurant) {
+    console.log(restaurant);
+    const headers = this.auth.getHttpHeadersWithToken();
+    return this.http.post('/api/restaurants/', restaurant, headers).pipe(tap(data => {
+    }));
+  }
 }

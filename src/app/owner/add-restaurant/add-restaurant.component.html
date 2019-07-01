@@ -1,0 +1,17 @@
+<div class="container col-md-12 my-2">
+  <form #addRestaurantForm="ngForm" (ngSubmit)="addRestaurant(addRestaurantForm.value)">
+    <div class="form-group">
+      <label for="name">Restaurant Name</label>
+      <input [(ngModel)]="restaurantName"
+             name="name" type="text" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="description">Address</label>
+      <textarea class="form-control" rows="3" id="description" [(ngModel)]="restaurantAddress" name="address"></textarea>
+    </div>
+    <div class="form-group">
+      <ngb-rating [(rate)]="class" id="class" class="class-stars" [max]="5"></ngb-rating>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+  </form>
+</div>

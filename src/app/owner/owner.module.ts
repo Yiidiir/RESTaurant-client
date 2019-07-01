@@ -16,6 +16,7 @@ import {EditFoodComponent} from './manage-restaurant/tabs/edit-food/edit-food.co
 import { EditRestaurantInfoComponent } from './manage-restaurant/tabs/edit-restaurant-info/edit-restaurant-info.component';
 import { ManageWorkHoursComponent } from './manage-restaurant/tabs/manage-work-hours/manage-work-hours.component';
 import { WorkTimeModule } from 'work-time';
+import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
 
 
 @NgModule({
@@ -38,8 +39,9 @@ import { WorkTimeModule } from 'work-time';
   AddFoodComponent,
   EditFoodComponent,
   EditRestaurantInfoComponent,
-  ManageWorkHoursComponent],
-  entryComponents: [AddTableComponent, EditTableComponent, AddFoodComponent, EditFoodComponent]
+  ManageWorkHoursComponent,
+  AddRestaurantComponent],
+  entryComponents: [AddTableComponent, EditTableComponent, AddFoodComponent, EditFoodComponent, AddRestaurantComponent]
 })
 export class OwnerModule {
 }
