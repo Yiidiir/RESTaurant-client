@@ -33,6 +33,9 @@
           <div class="form-group" *ngIf="order.order_status === 'Waiting for payment'">
             <button type="button" class="btn btn-outline-dark" (click)="openPayOrder(order.id)">Pay Now</button>
           </div>
+          <div class="form-group" *ngIf="order.order_status === ('Processing' || 'Completed') ">
+            <a class="btn btn-outline-dark" href="{{order.receipt_url}}" target="_blank">View receipt</a>
+          </div>
         </li>
       </ul><!-- End -->
 
