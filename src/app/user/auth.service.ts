@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {toJSDate} from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +24,7 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
   }
 
@@ -82,6 +83,8 @@ export class AuthService {
   logOut() {
     this.currentUser = null;
     localStorage.removeItem('token');
+    this.router.navigate(['']);
+
   }
 
   checkAuthenticationStatus() {
