@@ -10,7 +10,6 @@ import { MyOrdersComponent } from './client/my-orders/my-orders.component';
 import { EditProfileComponent } from './client/edit-profile/edit-profile.component';
 import { PayOrderComponent } from './client/pay-order/pay-order.component';
 import { NgxStripeModule } from 'ngx-stripe';
-import { Login2Component } from './login2/login2.component';
 import {OrderDetailsComponent} from '../owner/manage-restaurant/tabs/order-details/order-details.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import {OrderDetailsComponent} from '../owner/manage-restaurant/tabs/order-detai
     MyOrdersComponent,
     EditProfileComponent,
     PayOrderComponent,
-    Login2Component,
   ]
 })
 export class UserModule {
