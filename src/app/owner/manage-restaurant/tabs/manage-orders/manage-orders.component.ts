@@ -7,6 +7,9 @@ import {map, startWith} from 'rxjs/operators';
 import {IOrder} from '../../../../user/client/my-orders/order.model';
 import {MyOrdersService} from '../../../../user/client/my-orders/my-orders.service';
 import {IRestaurant} from '../../../../user/client/restaurant/restaurant.model';
+import {PayOrderComponent} from '../../../../user/client/pay-order/pay-order.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {OrderDetailsComponent} from '../order-details/order-details.component';
 
 
 @Component({
@@ -23,7 +26,7 @@ export class ManageOrdersComponent implements OnInit {
   @Input() restaurant: IRestaurant;
 
 
-  constructor(pipe: LowerCasePipe, private ordersService: MyOrdersService) {
+  constructor(pipe: LowerCasePipe, private ordersService: MyOrdersService, private modalService: NgbModal) {
     this.orders$ = this.filter.valueChanges.pipe(
       startWith(''),
       map(text => this.search(text, pipe))
@@ -83,6 +86,12 @@ export class ManageOrdersComponent implements OnInit {
     }
     return 'Booking Details';
   }
+
+  openDetails(order: IOrder) {
+    const payOrderModal = this.modalService.open(OrderDetailsComponent);
+    payOrderModal.componentInstance.orderToInspect = order;
+  }
+
 
 
 }

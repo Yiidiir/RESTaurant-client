@@ -11,3 +11,4 @@ export interface IRestaurant {
   'foods'?: IFood[];
   'work_schedule'?: any;
 }
+
