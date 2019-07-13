@@ -10,66 +10,51 @@
     <div class="col-lg-5">
       <h1 class="font-weight-light">Discover restaurants and book tables</h1>
       <p>Find food you love from local restaurants and pre-book a table</p>
-      <a class="btn btn-primary" href="#">Book Now</a>
+      <a class="btn btn-primary" href="#booking">Book Now</a>
     </div>
     <!-- /.col-md-4 -->
   </div>
   <!-- /.row -->
 
-<app-new-order-form></app-new-order-form>
+<app-new-order-form id="booking" *ngIf="auth?.isClient()"></app-new-order-form>
   <!-- Call to Action Well -->
   <div class="card text-white bg-secondary my-5 py-4 text-center">
     <div class="card-body">
-      <p class="text-white m-0">This call to action card is a great place to showcase some important information or
-        display a clever tagline!</p>
+      <p class="text-white m-0">RESTaurant is the easy way to get the food you love delivered or your tables booked.</p>
     </div>
   </div>
 
 
   <div class="row">
-    <div class="col-md-3 mb15">
-      <article class="box h-100">
-        <figure class="itembox text-center">
-          <span class="mt-2 icon-wrap rounded icon-sm bg-success"><i class="fa fa-user white"></i></span>
-          <figcaption class="text-wrap">
-            <h5 class="title">Creative Strategy &amp; solution</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod </p>
-          </figcaption>
-        </figure> <!-- iconbox // -->
-      </article> <!-- panel-lg.// -->
-    </div><!-- col // -->
-    <div class="col-md-3 mb15">
+    <div class="col-md-4 mb15">
       <article class="box h-100">
         <figure class="itembox text-center">
           <span class="mt-2 icon-wrap rounded icon-sm bg-warning"><i class="fa fa-cogs white"></i>	</span>
           <figcaption class="text-wrap">
-            <h5 class="title">Some good title</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et </p>
+            <h5 class="title">Browse</h5>
+            <p class="text-muted">RESTaurant has hundreds of restaurants to choose from. When you open the app, you can scroll through the feed for inspiration or search for a particular restaurant or cuisine. When you find something you like, tap to add it to your cart.</p>
           </figcaption>
         </figure> <!-- iconbox // -->
       </article> <!-- panel-lg.// -->
     </div> <!-- col // -->
-    <div class="col-md-3 mb15">
+    <div class="col-md-4 mb15">
       <article class="box h-100">
         <figure class="itembox text-center">
           <span class="mt-2 icon-wrap rounded icon-sm bg-primary"><i class="fa fa-clock white"></i>	</span>
           <figcaption class="text-wrap">
-            <h5 class="title">Track your time</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et </p>
+            <h5 class="title">Order</h5>
+            <p class="text-muted">When you’re ready to check out, you’ll see your address, an estimated delivery time, and the price of the order including tax and delivery fee. When everything looks right, just tap Place order–and that’s it. We’ll automatically use the card on file so you never need cash.</p>
           </figcaption>
         </figure> <!-- iconbox // -->
       </article> <!-- panel-lg.// -->
     </div> <!-- col // -->
-    <div class="col-md-3 mb15">
+    <div class="col-md-4 mb15">
       <article class="box h-100">
         <figure class="itembox text-center">
           <span class="mt-2 icon-wrap rounded icon-sm bg-secondary"><i class="fa fa-building white"></i>	</span>
           <figcaption class="text-wrap">
-            <h5 class="title">Building Business Innovation</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et </p>
+            <h5 class="title">Track</h5>
+            <p class="text-muted">Follow your order in the app. First you’ll see the restaurant accept and start prepping. Then, when the order’s almost ready, a nearby Uber partner–in a car, on a bike, or scooter–will go to the restaurant to pick it up. Next, they’ll drive or ride to you. You’ll be able to see their name and photo and track progress on the map.</p>
           </figcaption>
         </figure> <!-- iconbox // -->
       </article> <!-- panel-lg.// -->

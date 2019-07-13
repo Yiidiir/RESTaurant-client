@@ -64,7 +64,10 @@ export class AuthService {
   }
 
   isClient() {
-    return this.currentUser.role === 1;
+    if (this.currentUser) {
+      return this.currentUser.role === 1;
+    }
+    return false;
   }
 
   isOwner() {
