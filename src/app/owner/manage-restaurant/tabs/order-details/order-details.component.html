@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <h2 class="card-title">{{orderToInspect.order_type}}</h2>
-    <h3 class="card-text" *ngIf="orderDetails">Address: {{orderDetails?.address}}</h3>
+    <h3 class="card-text" *ngIf="orderDetails?.address">Address: {{orderDetails?.address}}</h3>
     <h3 class="card-text" *ngIf="orderDetails?.table_id">Table #{{orderDetails?.table_id}}</h3>
   </div>
   <div class="card-footer text-muted">
