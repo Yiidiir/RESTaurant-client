@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   regError = false;
   regErrorMsg: any;
   alert: Alert;
+  errors: any[] = [];
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -23,9 +24,16 @@ export class RegisterComponent implements OnInit {
 
   register(formValues) {
     this.authService.registerUser(formValues).subscribe(resp => {
-      if (resp.status === 422) {
+      if (!resp.ok) {
+        this.errors = [];
+        this.regErrorMsg = '';
+        console.log(resp.error.message);
+        const errorsx = JSON.parse(JSON.stringify(resp.error.errors));
+        this.regErrorMsg = resp.error.message;
+        for (let err in errorsx) {
+          this.errors.push(resp.error.errors[err][0]);
+        }
         this.regError = true;
-        this.regErrorMsg = resp.error;
         console.log(resp.error);
       } else {
         this.router.navigate(['']);

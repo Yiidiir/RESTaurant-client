@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(formValues.email, formValues.password).subscribe(resp => {
       if (!resp.ok) {
         this.errors = [];
-        this.mastererror = [];
+        this.mastererror = '';
         console.log(resp.error.message);
         const errorsx = JSON.parse(JSON.stringify(resp.error.errors));
         this.mastererror = resp.error.message;

@@ -7,8 +7,13 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Create an account!</h3>
-              <ngb-alert *ngIf="regError" type="danger">{{ regErrorMsg.message }}
+              <ngb-alert *ngIf="regError" type="danger">
+                {{regErrorMsg}}
+                <ul>
+                  <li *ngFor="let error of errors">{{error}}</li>
+                </ul>
               </ngb-alert>
+
               <form #loginForm="ngForm" (ngSubmit)="register(loginForm.value)" novalidate>
                 <div class="form-label-group">
                   <input  (ngModel)="first_name" type="text" id="inputFirstName" name="first_name" class="form-control" placeholder="First Name" required autofocus>

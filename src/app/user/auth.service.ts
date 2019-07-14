@@ -48,15 +48,15 @@ export class AuthService {
   }
 
   registerUser(dataBody) {
-    return this.http.post<IUser>(this.endpoint + 'users/register', dataBody, this.httpOptions).pipe(catchError(
-      err => {
-        return of(err);
-      }
-    )).pipe(tap(data => {
+    return this.http.post<IUser>(this.endpoint + 'users/register', dataBody, this.httpOptions).pipe(tap(data => {
       data = data['data'];
       this.currentUser = <IUser> (data);
       localStorage.setItem('token', data.api_token);
-    }));
+    })).pipe(catchError(
+      err => {
+        return of(err);
+      }
+    ));
   }
 
   isAuthenticated() {
