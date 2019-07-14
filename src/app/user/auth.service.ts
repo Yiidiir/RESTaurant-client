@@ -42,7 +42,7 @@ export class AuthService {
       localStorage.setItem('token', data.api_token);
     })).pipe(catchError(
       err => {
-        return of(false);
+        return of(err);
       }
     ));
   }

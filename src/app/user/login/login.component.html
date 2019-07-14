@@ -7,7 +7,12 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back!</h3>
-              <ngb-alert *ngIf="loginInvalid" type="danger">Invalid E-mail or password</ngb-alert>
+              <ngb-alert *ngIf="loginInvalid" type="danger">
+                {{mastererror}}
+              <ul>
+                <li *ngFor="let error of errors">{{error}}</li>
+              </ul>
+              </ngb-alert>
               <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" novalidate>
               <div class="form-label-group">
                   <input  (ngModel)="email" type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
